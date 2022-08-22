@@ -1,6 +1,9 @@
 @import-normalize; /* bring in normalize.css styles */
 
 body {
+  height: 100%;
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #F2F2F2;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -13,3 +16,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+*, *::before, 
+    *::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.active {
+  font-size: 14px;
+}
+
