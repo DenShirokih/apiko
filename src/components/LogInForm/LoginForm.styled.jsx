@@ -26,8 +26,9 @@ export const TitleDiv = styled.div`
 export const Input = styled.input`
   width: 377px;
   height: 58px;
+  color: black;
   background-color: #f9fafb;
-  color: #dedee0;
+
   margin-bottom: 30px;
   border: 1px solid #dedee0;
   border-radius: 5px;
@@ -63,12 +64,11 @@ export const Register = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  `;
+`;
 
 export const LinkRegister = styled(Link)`
-    color: #349a89;
-    text-transform: uppercase;
-    cursor: pointer;
-    text-decoration: none;
-
-`
+  color: #349a89;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+`;

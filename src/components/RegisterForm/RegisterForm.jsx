@@ -1,6 +1,9 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { Container } from 'components/LogInForm/LoginForm.styled';
+import { useDispatch } from 'react-redux/es/exports';
+import { setAuthToken, setUser } from 'redux/authSlice';
+import { updateProfile } from 'firebase/auth';
 import {
   ContainerForm,
   TitleDiv,
@@ -14,8 +17,21 @@ import {
 } from './RegisterForm.styled';
 
 export const RegisterForm = () => {
-  const { register } = useForm();
+  const dispath = useDispatch();
+  const { register, handleSubmit, reset } = useForm();
 
+  const registerUser = async ({ email, password }) => {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(userCredential => {
+        const user = userCredential.user;
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  };
   return (
     <Container>
       <ContainerForm>
@@ -24,9 +40,9 @@ export const RegisterForm = () => {
         </TitleDiv>
         <Form
           autoComplete="off"
-          // onSubmit={handleSubmit(data => {
-          //   loginUser(data);
-          // })}
+          onSubmit={handleSubmit(data => {
+            registerUser(data);
+          })}
         >
           <label htmlFor="email">
             <DescriptionTitle>email</DescriptionTitle>
@@ -40,12 +56,12 @@ export const RegisterForm = () => {
               placeholder="Email..."
             />
           </label>
-          <label htmlFor="name">
+          <label htmlFor="displayName">
             <DescriptionTitle>full name</DescriptionTitle>
             <Input
-              type="name"
-              name="name"
-              {...register('name', {
+              type="text"
+              name="displayName"
+              {...register('displayName', {
                 register: true,
                 required: 'This is required',
               })}
@@ -65,7 +81,7 @@ export const RegisterForm = () => {
               placeholder="Password..."
             />
           </label>
-          <label htmlFor="password">
+          {/* <label htmlFor="password">
             <DescriptionTitle>Password again</DescriptionTitle>
             <Input
               type="password"
@@ -77,13 +93,13 @@ export const RegisterForm = () => {
               })}
               placeholder="Password..."
             />
-          </label>
+          </label> */}
           <Button type="submit">Register</Button>
         </Form>
       </ContainerForm>
       <Register>
         <p>
-          I already have an account, 
+          I already have an account,
           <LinkRegister to="/login"> log in</LinkRegister>
         </p>
       </Register>

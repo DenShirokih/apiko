@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-
 export const ContainerForm = styled.div`
   width: 425px;
   height: 550px;
@@ -29,12 +28,11 @@ export const Input = styled.input`
   width: 377px;
   height: 58px;
   background-color: #f9fafb;
-  color: #dedee0;
+  color: black;
   margin-bottom: 24px;
   border: 1px solid #dedee0;
   border-radius: 5px;
 `;
-
 
 export const DescriptionTitle = styled.h2`
   font-size: 12px;
@@ -64,12 +62,11 @@ export const Register = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  `;
+`;
 
 export const LinkRegister = styled(Link)`
-    color: #349a89;
-    text-transform: uppercase;
-    cursor: pointer;
-    text-decoration: none;
-
-`
+  color: #349a89;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+`;
