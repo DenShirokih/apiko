@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Form, Input, Select, Button } from './Filter.styled';
 
 export const Filter = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register} = useForm();
 
   return (
     <Form
