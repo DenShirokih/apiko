@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/name_repo/static/css/main.7acaea2f.css",
-    "main.js": "/name_repo/static/js/main.07d3183d.js",
-    "index.html": "/name_repo/index.html",
-    "main.7acaea2f.css.map": "/name_repo/static/css/main.7acaea2f.css.map",
-    "main.07d3183d.js.map": "/name_repo/static/js/main.07d3183d.js.map"
+    "main.css": "/apiko/static/css/main.7acaea2f.css",
+    "main.js": "/apiko/static/js/main.07d3183d.js",
+    "index.html": "/apiko/index.html",
+    "main.7acaea2f.css.map": "/apiko/static/css/main.7acaea2f.css.map",
+    "main.07d3183d.js.map": "/apiko/static/js/main.07d3183d.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
