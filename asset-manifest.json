@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/apiko/static/css/main.7acaea2f.css",
-    "main.js": "/apiko/static/js/main.07d3183d.js",
+    "main.js": "/apiko/static/js/main.ffa519d2.js",
     "index.html": "/apiko/index.html",
     "main.7acaea2f.css.map": "/apiko/static/css/main.7acaea2f.css.map",
-    "main.07d3183d.js.map": "/apiko/static/js/main.07d3183d.js.map"
+    "main.ffa519d2.js.map": "/apiko/static/js/main.ffa519d2.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.07d3183d.js"
+    "static/js/main.ffa519d2.js"
   ]
 }
