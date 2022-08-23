@@ -18,7 +18,7 @@ const values = {
 };
 
 export const AddProduct = () => {
-  const handleSubmit = async value => {
+  const handleSubmit = async (value, { resetForm }) => {
     const db = getDatabase();
     const postListRef = ref(db, 'posts');
     const newPostRef = push(postListRef);
@@ -28,6 +28,7 @@ export const AddProduct = () => {
       description: value.description,
       price: value.price,
     });
+    resetForm();
   };
   return (
     <Background>
