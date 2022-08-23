@@ -6,6 +6,10 @@ import { setAuthToken, setUser } from 'redux/authSlice';
 import * as yup from 'yup';
 import React, { useState } from 'react';
 import { IoEyeOutline, IoEyeOff } from 'react-icons/io5';
+import { Navigate, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { authSelectors } from 'redux/authSelectors';
+
 import {
   ContainerForm,
   TitleDiv,
@@ -39,6 +43,11 @@ export const RegisterForm = () => {
     setStatePass(prevState => !prevState);
   };
   const dispatch = useDispatch();
+  const location = useLocation();
+  const logged = useSelector(authSelectors.getloggedIn);
+  if (logged) {
+    return <Navigate to="/" state={{ from: location }} />;
+  }
 
   const handleSubmit = ({ name, email, password }, { resetForm }) => {
     const auth = getAuth();
