@@ -2,6 +2,7 @@ import { removeUser } from 'redux/authSlice';
 import { useDispatch } from 'react-redux';
 // import { useLogOutUserMutation } from 'redux/auth/authApi';
 import { getAuth, signOut } from 'firebase/auth';
+import { BtnOut } from './LogOutButton.styled';
 
 export const LogOutButton = () => {
   const dispatch = useDispatch();
@@ -19,9 +20,5 @@ export const LogOutButton = () => {
       });
   };
 
-  return (
-    <div>
-      <button onClick={() => handleLogOut()}>Log out</button>
-    </div>
-  );
+  return <BtnOut onClick={() => handleLogOut()}>Log out</BtnOut>;
 };
