@@ -1,64 +1,93 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { Formik } from 'formik';
+import { setAuthToken, setUser } from 'redux/authSlice';
+import * as yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import {
   ContainerForm,
   TitleDiv,
-  Input,
   Title,
   DescriptionTitle,
-  Form,
-  Button, 
+  FormStyled,
+  Button,
+  Input,
   Register,
   Container,
-  LinkRegister
+  LinkRegister,
 } from './LoginForm.styled';
 
+const schema = yup.object().shape({
+  email: yup.string().required(),
+  password: yup.string().required(),
+});
+
+const values = {
+  email: '',
+  password: '',
+};
+
 export const LoginForm = () => {
-  const { register } = useForm();
+  const dispatch = useDispatch();
+
+  const handleSubmit = ({ email, password }, { resetForm }) => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then(userCredential => {
+        const userAut = userCredential.user;
+        dispatch(
+          setUser({
+            user: { email: userAut.email },
+            id: userAut.uid,
+          })
+        );
+        dispatch(setAuthToken(userAut.accessToken));
+        resetForm();
+      })
+      .catch(error => {
+        console.log(error.code);
+        console.log(error.message);
+      });
+  };
 
   return (
-  <Container>
-    <ContainerForm>
-      <TitleDiv>
-        <Title>Login</Title>
-      </TitleDiv>
-      <Form
-        autoComplete="off"
-        // onSubmit={handleSubmit(data => {
-        //   loginUser(data);
-        // })}
-      >
-        <label htmlFor="email">
-          <DescriptionTitle>Email</DescriptionTitle>
-          <Input
-            type="email"
-            name="email"
-            {...register('email', {
-              register: true,
-              required: 'This is required',
-            })}
-            placeholder="Email..."
-          />
-        </label>
-        <label htmlFor="password">
-          <DescriptionTitle>Password</DescriptionTitle>
-          <Input
-            type="password"
-            name="password"
-            {...register('password', {
-              register: true,
-              required: 'This is required',
-              suggested: 'current-password',
-            })}
-            placeholder="Password..."
-          />
-        </label>
-        <Button type="submit">Continue</Button>
-      </Form>
-    </ContainerForm>
-    <Register>
-      <p>I have no account, <LinkRegister to="/register">register now</LinkRegister></p>
-    </Register>
-    </Container>
+    <Formik
+      initialValues={values}
+      validationSchema={schema}
+      onSubmit={handleSubmit}
+    >
+      <Container>
+        <ContainerForm>
+          <TitleDiv>
+            <Title>Login</Title>
+          </TitleDiv>
+          <Container>
+            <ContainerForm>
+              <FormStyled autoComplete="off">
+                <label htmlFor="email">
+                  <DescriptionTitle>email</DescriptionTitle>
+                  <Input type="email" name="email" placeholder="Email..." />
+                </label>
+                <label htmlFor="password">
+                  <DescriptionTitle>password</DescriptionTitle>
+                  <Input
+                    type="password"
+                    name="password"
+                    placeholder="Password..."
+                  />
+                </label>
+                <Button type="submit">Continue</Button>
+              </FormStyled>
+            </ContainerForm>
+          </Container>
+        </ContainerForm>
+        <Register>
+          <p>
+            I have no account,{' '}
+            <LinkRegister to="/register">register now</LinkRegister>
+          </p>
+        </Register>
+      </Container>
+    </Formik>
   );
 };
