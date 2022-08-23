@@ -4,6 +4,9 @@ import { setAuthToken, setUser } from 'redux/authSlice';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useSelector } from 'react-redux';
+import { authSelectors } from 'redux/authSelectors';
+import { Navigate, useLocation } from 'react-router-dom';
 import {
   ContainerForm,
   TitleDiv,
@@ -20,7 +23,6 @@ import {
 } from './LoginForm.styled';
 import { IoEyeOutline, IoEyeOff } from 'react-icons/io5';
 
-
 const schema = yup.object().shape({
   email: yup.string().required(),
   password: yup.string().required(),
@@ -36,8 +38,12 @@ export const LoginForm = () => {
   const toggleBtn = () => {
     setStatePass(prevState => !prevState);
   };
-
+  const location = useLocation();
   const dispatch = useDispatch();
+  const logged = useSelector(authSelectors.getloggedIn);
+  if (logged) {
+    return <Navigate to="/" state={{ from: location }} />;
+  }
 
   const handleSubmit = ({ email, password }, { resetForm }) => {
     const auth = getAuth();
@@ -45,8 +51,6 @@ export const LoginForm = () => {
       .then(userCredential => {
         const userAut = userCredential.user;
         const name = userAut.displayName;
-        console.log(name);
-        console.log(userAut);
         dispatch(
           setUser({
             user: { email: userAut.email },

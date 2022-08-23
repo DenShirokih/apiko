@@ -7,11 +7,13 @@ import {
   ContainerFilter,
 } from './HeaderHome.styled';
 import { Filter } from '../Filter/Filter';
-// import { useDispatch } from 'react-redux';
-// import { removeUser } from 'redux/authSlice';
 import { LogOutButton } from 'components/LogOutButton/LogOutButton';
+import { useSelector } from 'react-redux';
+import { authSelectors } from 'redux/authSelectors';
+
 
 export const HeaderHome = () => {
+  const logged = useSelector(authSelectors.getloggedIn);
   return (
     <Header>
       <Container>
@@ -20,8 +22,10 @@ export const HeaderHome = () => {
         </Button>
         <div>
           <LinkItem to="/add">ADD</LinkItem>
+
           <LinkItem to="/login">login</LinkItem>
           <LogOutButton />
+          {!logged && <LinkItem to="/login">login</LinkItem>}
         </div>
       </Container>
       <ContainerFilter>
