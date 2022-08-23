@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import { Field, Form } from 'formik';
 
 export const Container = styled.div`
   margin: 0 auto;
@@ -14,7 +15,7 @@ export const ContainerForm = styled.div`
   border-radius: 5px;
 `;
 
-export const Form = styled.form`
+export const FormStyled = styled(Form)`
   padding: 0px 24px;
 `;
 
@@ -23,7 +24,7 @@ export const TitleDiv = styled.div`
   padding-top: 25px;
   margin-bottom: 32px;
 `;
-export const Input = styled.input`
+export const Input = styled(Field)`
   width: 377px;
   height: 58px;
   color: black;
