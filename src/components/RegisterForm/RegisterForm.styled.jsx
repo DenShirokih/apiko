@@ -71,3 +71,20 @@ export const LinkRegister = styled(Link)`
   cursor: pointer;
   text-decoration: none;
 `;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const BtnEye = styled.button`
+  padding: 0.9rem;
+  font-size: 25px;
+  outline: none;
+  border: none;
+  margin-left: -3rem;
+  background-color: transparent;
+  cursor: pointer;
+  padding-bottom: 35px;
+  padding-left: 10px;
+`;

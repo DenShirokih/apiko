@@ -4,6 +4,8 @@ import { Container } from 'components/LogInForm/LoginForm.styled';
 import { Formik } from 'formik';
 import { setAuthToken, setUser } from 'redux/authSlice';
 import * as yup from 'yup';
+import React, { useState } from 'react';
+import { IoEyeOutline, IoEyeOff } from 'react-icons/io5';
 import {
   ContainerForm,
   TitleDiv,
@@ -14,6 +16,8 @@ import {
   Register,
   LinkRegister,
   FormStyled,
+  Wrapper,
+  BtnEye,
 } from './RegisterForm.styled';
 import { useDispatch } from 'react-redux';
 
@@ -30,6 +34,10 @@ const values = {
 };
 
 export const RegisterForm = () => {
+  const [statePass, setStatePass] = useState(false);
+  const toggleBtn = () => {
+    setStatePass(prevState => !prevState);
+  };
   const dispatch = useDispatch();
 
   const handleSubmit = ({ name, email, password }, { resetForm }) => {
@@ -75,11 +83,16 @@ export const RegisterForm = () => {
             </label>
             <label htmlFor="password">
               <DescriptionTitle>password</DescriptionTitle>
-              <Input
-                type="password"
-                name="password"
-                placeholder="Password..."
-              />
+              <Wrapper>
+                <Input
+                  type={statePass ? 'text' : 'password'}
+                  name="password"
+                  placeholder="Password..."
+                />
+                <BtnEye onClick={toggleBtn}>
+                  {statePass ? <IoEyeOff /> : <IoEyeOutline />}
+                </BtnEye>
+              </Wrapper>
             </label>
             <Button type="submit">Register</Button>
           </FormStyled>
