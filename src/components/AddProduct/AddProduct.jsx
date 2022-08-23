@@ -1,4 +1,5 @@
 import { Formik } from 'formik';
+import { nanoid } from 'nanoid';
 import { getDatabase, ref, set, push } from 'firebase/database';
 import {
   Background,
@@ -15,6 +16,7 @@ const values = {
   location: '',
   description: '',
   price: '',
+  file: '',
 };
 
 export const AddProduct = () => {
@@ -23,12 +25,14 @@ export const AddProduct = () => {
     const postListRef = ref(db, 'posts');
     const newPostRef = push(postListRef);
     await set(newPostRef, {
+      id: nanoid(),
       title: value.title,
       location: value.location,
       description: value.description,
       price: value.price,
     });
     resetForm();
+    console.log(value);
   };
   return (
     <Background>
@@ -37,6 +41,7 @@ export const AddProduct = () => {
           <MainTitle>Add product</MainTitle>
           <div>
             <Title>titile</Title>
+            <Input type="file" name="file" />
             <Input type="text" name="title"></Input>
           </div>
           <div>
