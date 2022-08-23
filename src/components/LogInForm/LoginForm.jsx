@@ -17,6 +17,7 @@ import {
   LinkRegister,
 } from './LoginForm.styled';
 
+
 const schema = yup.object().shape({
   email: yup.string().required(),
   password: yup.string().required(),
