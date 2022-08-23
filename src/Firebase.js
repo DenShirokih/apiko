@@ -9,4 +9,18 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
+
+
+// import { initializeApp } from "firebase/app";
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBMF7_ZBB1yHvn7iGTzcLsc63JqhbPHPFk",
+//   authDomain: "auth-base-e7ef1.firebaseapp.com",
+//   projectId: "auth-base-e7ef1",
+//   storageBucket: "auth-base-e7ef1.appspot.com",
+//   messagingSenderId: "158699732668",
+//   appId: "1:158699732668:web:11955b1337ef19b1231ab9"
+// };
+
+// const app = initializeApp(firebaseConfig);
