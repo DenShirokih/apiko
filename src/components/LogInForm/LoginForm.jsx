@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik } from 'formik';
 import { setAuthToken, setUser } from 'redux/authSlice';
 import * as yup from 'yup';
@@ -15,7 +15,10 @@ import {
   Register,
   Container,
   LinkRegister,
+  Wrapper,
+  BtnEye,
 } from './LoginForm.styled';
+import { IoEyeOutline, IoEyeOff } from 'react-icons/io5';
 
 const schema = yup.object().shape({
   email: yup.string().required(),
@@ -28,6 +31,11 @@ const values = {
 };
 
 export const LoginForm = () => {
+  const [statePass, setStatePass] = useState(false);
+  const toggleBtn = () => {
+    setStatePass(prevState => !prevState);
+  };
+
   const dispatch = useDispatch();
 
   const handleSubmit = ({ email, password }, { resetForm }) => {
@@ -35,6 +43,9 @@ export const LoginForm = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         const userAut = userCredential.user;
+        const name = userAut.displayName;
+        console.log(name);
+        console.log(userAut);
         dispatch(
           setUser({
             user: { email: userAut.email },
@@ -42,6 +53,11 @@ export const LoginForm = () => {
           })
         );
         dispatch(setAuthToken(userAut.accessToken));
+        dispatch(
+          setUser({
+            user: { name: name },
+          })
+        );
         resetForm();
       })
       .catch(error => {
@@ -70,11 +86,16 @@ export const LoginForm = () => {
                 </label>
                 <label htmlFor="password">
                   <DescriptionTitle>password</DescriptionTitle>
-                  <Input
-                    type="password"
-                    name="password"
-                    placeholder="Password..."
-                  />
+                  <Wrapper>
+                    <Input
+                      type={statePass ? 'text' : 'password'}
+                      name="password"
+                      placeholder="Password..."
+                    />
+                    <BtnEye onClick={toggleBtn}>
+                      {statePass ? <IoEyeOff /> : <IoEyeOutline />}
+                    </BtnEye>
+                  </Wrapper>
                 </label>
                 <Button type="submit">Continue</Button>
               </FormStyled>
