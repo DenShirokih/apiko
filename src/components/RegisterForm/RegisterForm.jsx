@@ -50,7 +50,6 @@ export const RegisterForm = () => {
         console.log(error.code);
         console.log(error.message);
       });
-    console.log(name, email, password);
   };
 
   return (
