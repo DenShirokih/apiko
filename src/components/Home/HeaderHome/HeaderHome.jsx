@@ -5,12 +5,12 @@ import {
   Button,
   Container,
   ContainerFilter,
+  BtnOut,
 } from './HeaderHome.styled';
 import { Filter } from '../Filter/Filter';
 import { LogOutButton } from 'components/LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { authSelectors } from 'redux/authSelectors';
-
 
 export const HeaderHome = () => {
   const logged = useSelector(authSelectors.getloggedIn);
@@ -22,10 +22,7 @@ export const HeaderHome = () => {
         </Button>
         <div>
           <LinkItem to="/add">ADD</LinkItem>
-
-          <LinkItem to="/login">login</LinkItem>
-          <LogOutButton />
-          {!logged && <LinkItem to="/login">login</LinkItem>}
+          {logged ? <LogOutButton /> : <LinkItem to="/login">login</LinkItem>}
         </div>
       </Container>
       <ContainerFilter>
