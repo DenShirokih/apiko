@@ -117,6 +117,7 @@ export const RegisterForm = () => {
                 <BtnEye type='button' onClick={toggleBtn}>
                   {statePass ? <IoEyeOff /> : <IoEyeOutline />}
                 </BtnEye>
+                </BtnEye>
               </Wrapper>
             </label>
             <Button type="submit">Register</Button>

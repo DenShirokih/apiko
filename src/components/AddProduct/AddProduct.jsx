@@ -12,6 +12,10 @@ import {
   TextArea,
   Title,
   Button,
+  ImgDiv,
+  InputAddImg,
+  Upload,
+  Wrapped,
 } from './AddProduct.styled';
 import { useState } from 'react';
 import React from 'react';
@@ -73,12 +77,7 @@ export const AddProduct = () => {
           <MainTitle>Add product</MainTitle>
           <div>
             <Title>titile</Title>
-            <input
-              accept="image/*"
-              type="file"
-              name="file"
-              onChange={e => changeHandler(e)}
-            />
+
             <Input type="text" name="title"></Input>
           </div>
           <div>
@@ -88,6 +87,23 @@ export const AddProduct = () => {
           <div>
             <Title>descriTitletion</Title>
             <TextArea type="text" name="description"></TextArea>
+          </div>
+          <div>
+            <Title>photos</Title>
+            <ImgDiv>
+              <label htmlFor="upload-file">
+                <Wrapped>
+                  <Upload />
+                </Wrapped>
+              </label>
+              <InputAddImg
+                id="upload-file"
+                accept="image/*"
+                type="file"
+                name="file"
+                onChange={e => changeHandler(e)}
+              />
+            </ImgDiv>
           </div>
           <div>
             <Title>price</Title>

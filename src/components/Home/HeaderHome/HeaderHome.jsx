@@ -2,15 +2,17 @@ import {
   Header,
   LinkItem,
   ApicoLogo,
-  Button,
+  Favorites,
   Container,
   ContainerFilter,
+  LinkDiv
 } from './HeaderHome.styled';
 import { Filter } from '../Filter/Filter';
 import { LogOutButton } from 'components/LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { authSelectors } from 'redux/authSelectors';
 import React from 'react';
+
 
 export const HeaderHome = () => {
   const logged = useSelector(authSelectors.getloggedIn);
@@ -20,10 +22,11 @@ export const HeaderHome = () => {
         <LinkItem to="/">
           <ApicoLogo />
         </LinkItem>
-        <div>
+        <LinkDiv>
           <LinkItem to="/add">ADD</LinkItem>
+          <LinkItem to="/favorites"><Favorites/></LinkItem>
           {logged ? <LogOutButton /> : <LinkItem to="/login">login</LinkItem>}
-        </div>
+        </LinkDiv>
       </Container>
       <ContainerFilter>
         <Filter />

@@ -6,12 +6,36 @@ import {
   ImgWrapper,
   ItemPrice,
   ItemLocation,
+  Like,
+  LikeButton,
+  LikeLogo,
 } from './ItemCard.styled';
-export const ItemCard = ({ title, location, description, price, photo }) => {
+
+import { useState } from 'react';
+
+export const ItemCard = ({ title, location, price, photo }) => {
+  const [value, setValue] = useState(false);
+
+  const toggle = e => {
+    setValue(prev => !prev);
+  };
+
+  console.log(value);
+
   return (
     <ItemWrapper>
       <ImgWrapper>
         <ImgItem src={photo} alt={title} />
+        <Like>
+          <label>
+            <LikeButton
+              type="checkbox"
+              checked={value}
+              onChange={e => toggle(e)}
+            />
+            <LikeLogo />
+          </label>
+        </Like>
       </ImgWrapper>
       <ItemDiscriptions>
         <ItemTitle>{title}</ItemTitle>
