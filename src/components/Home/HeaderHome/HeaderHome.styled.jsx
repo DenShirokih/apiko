@@ -4,6 +4,7 @@ import { ReactComponent as Logo } from 'icons/logo/LogofullHome.svg';
 
 export const Header = styled.header`
   background: linear-gradient(180deg, #090810 0%, #171236 100%);
+  margin-bottom: 15px;
 `;
 
 export const Container = styled.div`
@@ -37,4 +38,4 @@ export const ApicoLogo = styled(Logo)`
 export const ContainerFilter = styled.div`
   max-width: 855px;
   margin: 0 auto;
-`
+`;

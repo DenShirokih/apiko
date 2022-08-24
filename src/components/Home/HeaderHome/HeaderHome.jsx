@@ -5,7 +5,6 @@ import {
   Button,
   Container,
   ContainerFilter,
-  BtnOut,
 } from './HeaderHome.styled';
 import { Filter } from '../Filter/Filter';
 import { LogOutButton } from 'components/LogOutButton/LogOutButton';

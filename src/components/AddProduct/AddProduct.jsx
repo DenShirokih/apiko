@@ -1,5 +1,9 @@
 import { Formik } from 'formik';
-import { getDatabase, ref, set, push } from 'firebase/database';
+import { nanoid } from 'nanoid';
+import { getStorage, uploadBytes } from 'firebase/storage';
+import { ref as sRef } from 'firebase/storage';
+import { getDownloadURL } from 'firebase/storage';
+import { getDatabase, ref, set, push, child, update } from 'firebase/database';
 import {
   Background,
   Input,
@@ -9,27 +13,59 @@ import {
   Title,
   Button,
 } from './AddProduct.styled';
+import { useState } from 'react';
+import React from 'react';
 
 const values = {
   title: '',
   location: '',
   description: '',
   price: '',
+  file: '',
 };
 
 export const AddProduct = () => {
+  const [file, setFile] = useState(null);
+  const storage = getStorage();
   const handleSubmit = async (value, { resetForm }) => {
     const db = getDatabase();
     const postListRef = ref(db, 'posts');
     const newPostRef = push(postListRef);
-    await set(newPostRef, {
-      title: value.title,
-      location: value.location,
-      description: value.description,
-      price: value.price,
+    await set(newPostRef, {});
+
+    const storageRef = sRef(storage, `images/${file.name}`);
+    await uploadBytes(storageRef, file).then(() => {
+      console.log('Uploaded a blob or file!');
     });
+    getDownloadURL(sRef(storage, `images/${file.name}`))
+      .then(url => {
+        const postData = {
+          id: nanoid(),
+          title: value.title,
+          location: value.location,
+          description: value.description,
+          price: value.price,
+          photo: url,
+        };
+
+        const newPostKey = push(child(ref(db), 'posts')).key;
+        const updates = {};
+        updates['/posts/' + newPostKey] = postData;
+        update(ref(db), updates);
+      })
+      .catch(error => {
+        // Handle any errors
+      });
+
     resetForm();
   };
+
+  const changeHandler = e => {
+    if (e.target.files.length > 0) {
+      setFile(e.target.files[0]);
+    }
+  };
+
   return (
     <Background>
       <Formik initialValues={values} onSubmit={handleSubmit}>
@@ -37,6 +73,12 @@ export const AddProduct = () => {
           <MainTitle>Add product</MainTitle>
           <div>
             <Title>titile</Title>
+            <input
+              accept="image/*"
+              type="file"
+              name="file"
+              onChange={e => changeHandler(e)}
+            />
             <Input type="text" name="title"></Input>
           </div>
           <div>
