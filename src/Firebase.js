@@ -12,6 +12,7 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
+console.log(storage);
 // import { initializeApp } from "firebase/app";
 
 // const firebaseConfig = {
