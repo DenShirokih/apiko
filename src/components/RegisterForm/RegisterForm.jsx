@@ -97,7 +97,7 @@ export const RegisterForm = () => {
                   name="password"
                   placeholder="Password..."
                 />
-                <BtnEye onClick={toggleBtn}>
+                <BtnEye type='button' onClick={toggleBtn}>
                   {statePass ? <IoEyeOff /> : <IoEyeOutline />}
                 </BtnEye>
               </Wrapper>

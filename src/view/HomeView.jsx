@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 export const HomeView = () => {
-  const [items, setItem] = useState(null);
+  const [items, setItem] = useState([]);
   useEffect(() => {
     const db = getDatabase();
     const getCards = ref(db, 'posts/');
