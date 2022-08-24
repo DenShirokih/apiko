@@ -2,6 +2,7 @@ import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
 import { getStorage, uploadBytes } from 'firebase/storage';
 import { ref as sRef } from 'firebase/storage';
+import { getDownloadURL } from 'firebase/storage';
 import { getDatabase, ref, set, push, child, update } from 'firebase/database';
 import {
   Background,
@@ -25,35 +26,36 @@ const values = {
 
 export const AddProduct = () => {
   const [file, setFile] = useState(null);
-
+  const storage = getStorage();
   const handleSubmit = async (value, { resetForm }) => {
     const db = getDatabase();
     const postListRef = ref(db, 'posts');
     const newPostRef = push(postListRef);
     await set(newPostRef, {});
-    const storage = getStorage();
 
+    const storageRef = sRef(storage, `images/${file.name}`);
+    await uploadBytes(storageRef, file).then(() => {
+      console.log('Uploaded a blob or file!');
+    });
+    getDownloadURL(sRef(storage, `images/${file.name}`))
+      .then(url => {
+        const postData = {
+          id: nanoid(),
+          title: value.title,
+          location: value.location,
+          description: value.description,
+          price: value.price,
+          photo: url,
+        };
 
-    if (file) {
-      const storageRef = sRef(storage, `images/${file.name}`);
-      await uploadBytes(storageRef, file).then(() => {
-        console.log('Uploaded a blob or file!');
+        const newPostKey = push(child(ref(db), 'posts')).key;
+        const updates = {};
+        updates['/posts/' + newPostKey] = postData;
+        update(ref(db), updates);
+      })
+      .catch(error => {
+        // Handle any errors
       });
-
-      const postData = {
-        id: nanoid(),
-        title: value.title,
-        location: value.location,
-        description: value.description,
-        price: value.price,
-        photo: 'hello',
-      };
-
-      const newPostKey = push(child(ref(db), 'posts')).key;
-      const updates = {};
-      updates['/posts/' + newPostKey] = postData;
-      await update(ref(db), updates);
-    }
 
     resetForm();
   };
@@ -63,8 +65,6 @@ export const AddProduct = () => {
       setFile(e.target.files[0]);
     }
   };
-
-  console.log(file);
 
   return (
     <Background>
