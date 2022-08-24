@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from 'icons/logo/LogofullHome.svg';
+import { ReactComponent as FavoritesLogo } from 'icons/favorites.svg';
+
+
+
 
 export const Header = styled.header`
   background: linear-gradient(180deg, #090810 0%, #171236 100%);
@@ -39,3 +43,11 @@ export const ContainerFilter = styled.div`
   max-width: 855px;
   margin: 0 auto;
 `;
+export const Favorites = styled(FavoritesLogo)`
+  width: 20px;
+  height: 20px;
+`
+export const LinkDiv = styled.div`
+  display: flex;
+  align-items: center;
+`

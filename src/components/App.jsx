@@ -6,6 +6,7 @@ import { RegisterView } from 'view/RegisterView';
 import { AddProductsView } from 'view/AddProduct';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FavoritesView } from 'view/FavoritesView';
 
 export const App = () => {
   return (
@@ -16,6 +17,7 @@ export const App = () => {
           <Route path="login" element={<LoginView />} />
           <Route path="register" element={<RegisterView />} />
           <Route path="add" element={<AddProductsView />} />
+          <Route path="favorites" element={<FavoritesView />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
