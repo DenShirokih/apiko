@@ -5,7 +5,7 @@ export const RegisterView = () => {
   return (
     <>
       <HeaderForm />
-      <RegisterForm/>
+      <RegisterForm />
     </>
   );
 };

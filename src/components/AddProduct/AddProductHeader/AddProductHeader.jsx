@@ -13,9 +13,9 @@ export const AddProductHeader = () => {
     <>
       <Header>
         <Container>
-          <Button>
+          <LinkItem to="/">
             <ApicoLogo />
-          </Button>
+          </LinkItem>
           <UserMenu>
             <UserName></UserName>
             <LinkItem to="/login">login</LinkItem>

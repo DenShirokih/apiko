@@ -22,6 +22,8 @@ import {
   BtnEye,
 } from './LoginForm.styled';
 import { IoEyeOutline, IoEyeOff } from 'react-icons/io5';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const schema = yup.object().shape({
   email: yup.string().required(),
@@ -63,9 +65,11 @@ export const LoginForm = () => {
             user: { name: name },
           })
         );
+        toast.success(`Welcom ${name}`);
         resetForm();
       })
       .catch(error => {
+        toast.error(error.message);
         console.log(error.code);
         console.log(error.message);
       });

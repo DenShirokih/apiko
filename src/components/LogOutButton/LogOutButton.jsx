@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 // import { useLogOutUserMutation } from 'redux/auth/authApi';
 import { getAuth, signOut } from 'firebase/auth';
 import { BtnOut } from './LogOutButton.styled';
+import { toast } from 'react-toastify';
 
 export const LogOutButton = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ export const LogOutButton = () => {
     signOut(auth)
       .then(() => {
         dispatch(removeUser());
+        toast.success('See you soon');
         console.log('user log out');
       })
       .catch(error => {
