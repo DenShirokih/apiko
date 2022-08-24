@@ -65,7 +65,7 @@ export const LoginForm = () => {
             user: { name: name },
           })
         );
-        toast.success(`Welcom ${name}`);
+        toast.success(`Welcome ${name}`);
         resetForm();
       })
       .catch(error => {
@@ -101,7 +101,7 @@ export const LoginForm = () => {
                       name="password"
                       placeholder="Password..."
                     />
-                    <BtnEye type='button' onClick={toggleBtn}>
+                    <BtnEye type="button" onClick={toggleBtn}>
                       {statePass ? <IoEyeOff /> : <IoEyeOutline />}
                     </BtnEye>
                   </Wrapper>
