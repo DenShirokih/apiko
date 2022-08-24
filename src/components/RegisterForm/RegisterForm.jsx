@@ -20,6 +20,7 @@ import {
   BtnEye,
 } from './RegisterForm.styled';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -45,6 +46,7 @@ export const RegisterForm = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         updateProfile(userCredential.user, { displayName: name });
+        toast.success(`Welcome, ${name}`);
         dispatch(
           setUser({
             user: { email: email, name: name },
@@ -55,6 +57,7 @@ export const RegisterForm = () => {
         resetForm();
       })
       .catch(error => {
+        toast.error(error.message);
         console.log(error.code);
         console.log(error.message);
       });
@@ -88,6 +91,21 @@ export const RegisterForm = () => {
                   name="password"
                   placeholder="Password..."
                 />
+
+                <BtnEye onClick={toggleBtn}>
+                  {statePass ? <IoEyeOff /> : <IoEyeOutline />}
+                </BtnEye>
+              </Wrapper>
+            </label>
+            <label htmlFor="password">
+              <DescriptionTitle>repeat password</DescriptionTitle>
+              <Wrapper>
+                <Input
+                  type={statePass ? 'text' : 'password'}
+                  name="password"
+                  placeholder="Password..."
+                />
+
                 <BtnEye onClick={toggleBtn}>
                   {statePass ? <IoEyeOff /> : <IoEyeOutline />}
                 </BtnEye>

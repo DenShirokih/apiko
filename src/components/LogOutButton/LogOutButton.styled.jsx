@@ -6,6 +6,7 @@ export const BtnOut = styled.button`
   background-color: transparent;
   text-transform: uppercase;
   text-decoration: none;
+  border: none;
   cursor: pointer;
   :not(:last-child) {
     margin-right: 75px;
