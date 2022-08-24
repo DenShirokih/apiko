@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/apiko/static/css/main.02f005c0.css",
-    "main.js": "/apiko/static/js/main.b5a57a07.js",
+    "main.js": "/apiko/static/js/main.f65c8ad2.js",
     "static/media/LogofullForm.svg": "/apiko/static/media/LogofullForm.0bc76f169fa3ee69fca0e6a9ce854f40.svg",
     "static/media/LogofullHome.svg": "/apiko/static/media/LogofullHome.b459fc7a9efbd6052957e650c7521399.svg",
     "index.html": "/apiko/index.html",
     "main.02f005c0.css.map": "/apiko/static/css/main.02f005c0.css.map",
-    "main.b5a57a07.js.map": "/apiko/static/js/main.b5a57a07.js.map"
+    "main.f65c8ad2.js.map": "/apiko/static/js/main.f65c8ad2.js.map"
   },
   "entrypoints": [
     "static/css/main.02f005c0.css",
-    "static/js/main.b5a57a07.js"
+    "static/js/main.f65c8ad2.js"
   ]
 }
