@@ -1,5 +1,6 @@
 import { ItemCard } from '../ItemCard/ItemCard';
 import { ItemsWrapper, UlItem } from './ItemList.styled';
+
 export const ItemList = ({ item }) => {
   return (
     <ItemsWrapper>
@@ -7,6 +8,7 @@ export const ItemList = ({ item }) => {
         {item.map(({ title, location, description, price, id, photo }) => (
           <ItemCard
             key={id}
+            id={id}
             title={title}
             location={location}
             description={description}

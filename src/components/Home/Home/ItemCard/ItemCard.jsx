@@ -9,15 +9,36 @@ import {
   Like,
   LikeButton,
   LikeLogo,
+  Label,
 } from './ItemCard.styled';
-
 import { useState } from 'react';
+import { getDatabase, ref, set, push, remove } from 'firebase/database';
+import { authSelectors } from 'redux/authSelectors';
+import { useSelector } from 'react-redux';
 
-export const ItemCard = ({ title, location, price, photo }) => {
+export const ItemCard = ({ title, location, price, photo, id }) => {
   const [value, setValue] = useState(false);
+  const uid = useSelector(authSelectors.getId);
 
-  const toggle = e => {
+  const favoritesCardsId = id => {
+    const db = getDatabase();
+    // const newPostKey = push(child(ref(db), 'favorites/user/')).key;
+    const postListIdRef = ref(db, `favorites/users/` + uid);
+
+    if (value) {
+      const delListIdRef = ref(db, `favorites/users/` + uid); // == проблема ключ
+      remove(delListIdRef);
+    } else {
+      const newPostIdRef = push(postListIdRef);
+      set(newPostIdRef, {
+        id: id,
+      });
+    }
+  };
+
+  const toggle = id => {
     setValue(prev => !prev);
+    favoritesCardsId(id);
   };
 
   console.log(value);
@@ -27,14 +48,14 @@ export const ItemCard = ({ title, location, price, photo }) => {
       <ImgWrapper>
         <ImgItem src={photo} alt={title} />
         <Like>
-          <label>
+          <Label>
             <LikeButton
               type="checkbox"
               checked={value}
-              onChange={e => toggle(e)}
+              onChange={() => toggle(id)}
             />
             <LikeLogo />
-          </label>
+          </Label>
         </Like>
       </ImgWrapper>
       <ItemDiscriptions>

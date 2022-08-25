@@ -53,7 +53,14 @@ right: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+ 
+ 
 `
+export const Label = styled.label`
+   cursor: pointer;
+   padding: 10px;
+`
+
 
 export const LikeLogo = styled(LogoLike)`
 position: absolute;
@@ -61,10 +68,10 @@ top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
   width: 17px;
-  height: 17px; 
-  /* :checked{
-    background-color: #349A89;
-  } */
+  height: 17px;
+  :hover{
+    fill: #349a89;
+  }
 `
 
 export const LikeButton = styled.input`
@@ -75,4 +82,6 @@ position: relative;
   border-radius: 50%;
   width: 30px;
   height: 30px;
+
+  
 `
