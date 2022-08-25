@@ -55,16 +55,11 @@ export const LoginForm = () => {
         const name = userAut.displayName;
         dispatch(
           setUser({
-            user: { email: userAut.email },
+            user: { name: name },
             id: userAut.uid,
           })
         );
         dispatch(setAuthToken(userAut.accessToken));
-        dispatch(
-          setUser({
-            user: { name: name },
-          })
-        );
         toast.success(`Welcome ${name}`);
         resetForm();
       })
