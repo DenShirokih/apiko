@@ -15,19 +15,27 @@ import { useState } from 'react';
 import { getDatabase, ref, set, push, remove } from 'firebase/database';
 import { authSelectors } from 'redux/authSelectors';
 import { useSelector } from 'react-redux';
+import { useGetFavoritesItems } from 'hooks/useGetFavoritesItems';
 
 export const ItemCard = ({ title, location, price, photo, id }) => {
   const [value, setValue] = useState(false);
   const uid = useSelector(authSelectors.getId);
+  const { array } = useGetFavoritesItems();
+
 
   const favoritesCardsId = id => {
     const db = getDatabase();
-    // const newPostKey = push(child(ref(db), 'favorites/user/')).key;
     const postListIdRef = ref(db, `favorites/users/` + uid);
 
     if (value) {
-      const delListIdRef = ref(db, `favorites/users/` + uid); // == проблема ключ
-      remove(delListIdRef);
+      for (let i = 0; i <= array.length; i++) {
+        if (array[i][1].id === id) {
+          const key = array[i][0]
+          const delListIdRef = ref(db, `favorites/users/${uid}/${key}`);
+          remove(delListIdRef)
+          return;
+        }
+      }
     } else {
       const newPostIdRef = push(postListIdRef);
       set(newPostIdRef, {
@@ -41,7 +49,7 @@ export const ItemCard = ({ title, location, price, photo, id }) => {
     favoritesCardsId(id);
   };
 
-  console.log(value);
+console.log(value)
 
   return (
     <ItemWrapper>

@@ -7,8 +7,8 @@ import {
 } from 'components/Home/Home/ItemList/ItemList.styled';
 
 export const FavoritesCards = () => {
-  const favoriteItems = useGetFavoritesItems();
-  const ids = favoriteItems.flatMap(item => item.id);
+  const {items, keys} = useGetFavoritesItems();
+  const ids = items.flatMap(item => item.id);
   const AllItems = useGetAllItems();
 
   const findFavoritesCards = () => {
@@ -16,7 +16,6 @@ export const FavoritesCards = () => {
     for (let i = 0; i < ids.length; i++) {
       for (let j = 0; j < AllItems.length; j++) {
         if (ids[i] === AllItems[j].id) {
-          console.log(AllItems[j].id);
           result.push(AllItems[j]);
         }
       }
@@ -26,7 +25,7 @@ export const FavoritesCards = () => {
 
   return (
     <>
-      {favoriteItems && (
+      {items && (
         <ItemsWrapper>
           <UlItem>
             {findFavoritesCards().map(
