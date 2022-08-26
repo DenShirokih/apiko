@@ -45,6 +45,10 @@ export const UserName = styled.div`
   background-color: #f1c40f;
   border-radius: 50%;
   margin-right: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
 `;
 export const UserMenu = styled.div`
   display: flex;

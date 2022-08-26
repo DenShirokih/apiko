@@ -19,6 +19,8 @@ import {
 } from './AddProduct.styled';
 import { useState } from 'react';
 import React from 'react';
+import { toast, ToastContainer} from 'react-toastify';
+
 
 const values = {
   title: '',
@@ -39,6 +41,7 @@ export const AddProduct = () => {
 
     const storageRef = sRef(storage, `images/${file.name}`);
     await uploadBytes(storageRef, file).then(() => {
+      toast.success('Your product have been added')
       console.log('Uploaded a blob or file!');
     });
     getDownloadURL(sRef(storage, `images/${file.name}`))
@@ -50,6 +53,7 @@ export const AddProduct = () => {
           description: value.description,
           price: value.price,
           photo: url,
+          toggle: false,
         };
 
         const newPostKey = push(child(ref(db), 'posts')).key;
@@ -72,6 +76,7 @@ export const AddProduct = () => {
 
   return (
     <Background>
+      <ToastContainer theme="colored" />
       <Formik initialValues={values} onSubmit={handleSubmit}>
         <Forma>
           <MainTitle>Add product</MainTitle>

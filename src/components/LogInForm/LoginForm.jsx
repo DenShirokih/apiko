@@ -4,9 +4,6 @@ import { setAuthToken, setUser } from 'redux/authSlice';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { useSelector } from 'react-redux';
-import { authSelectors } from 'redux/authSelectors';
-import { Navigate, useLocation } from 'react-router-dom';
 import {
   ContainerForm,
   TitleDiv,
@@ -40,13 +37,8 @@ export const LoginForm = () => {
   const toggleBtn = () => {
     setStatePass(prevState => !prevState);
   };
-  const location = useLocation();
   const dispatch = useDispatch();
-  const logged = useSelector(authSelectors.getloggedIn);
-  if (logged) {
-    return <Navigate to="/" state={{ from: location }} />;
-  }
-
+ 
   const handleSubmit = ({ email, password }, { resetForm }) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)

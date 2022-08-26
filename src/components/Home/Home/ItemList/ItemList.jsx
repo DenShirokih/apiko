@@ -1,11 +1,12 @@
 import { ItemCard } from '../ItemCard/ItemCard';
 import { ItemsWrapper, UlItem } from './ItemList.styled';
 
-export const ItemList = ({ item }) => {
+export const ItemList = ({ items }) => {
+  
   return (
     <ItemsWrapper>
       <UlItem>
-        {item.map(({ title, location, description, price, id, photo }) => (
+        {items.map(({ title, location, description,  price, id, photo }) => (
           <ItemCard
             key={id}
             id={id}
@@ -13,7 +14,7 @@ export const ItemList = ({ item }) => {
             location={location}
             description={description}
             price={price}
-            photo={photo}
+            photo={photo}        
           />
         ))}
       </UlItem>

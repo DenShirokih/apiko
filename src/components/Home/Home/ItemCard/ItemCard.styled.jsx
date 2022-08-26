@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import {ReactComponent as LogoLike} from 'icons/like.svg'
+import { useSelector } from 'react-redux';
 
 
 export const ItemWrapper = styled.li`
@@ -67,10 +68,12 @@ position: absolute;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
+background-color: transparent;
+
   width: 17px;
   height: 17px;
   :hover{
-    fill: #349a89;
+    background-color: #349a89;
   }
 `
 
@@ -82,6 +85,7 @@ position: relative;
   border-radius: 50%;
   width: 30px;
   height: 30px;
+  background-color: transparent;
 
   
 `

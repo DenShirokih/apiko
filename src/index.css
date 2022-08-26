@@ -1,7 +1,6 @@
 body {
-  height: 100%;
   font-family: 'Helvetica Neue', sans-serif;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -15,18 +14,17 @@ code {
     monospace;
 }
 
-
-*, *::before, 
-    *::after{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 ul {
   list-style: none;
 }
-
 
 img {
   max-width: 100%;
@@ -37,4 +35,9 @@ img {
   font-size: 14px;
 }
 
-
+.postion {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
