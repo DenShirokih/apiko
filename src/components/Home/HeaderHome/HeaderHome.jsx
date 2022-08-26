@@ -5,7 +5,8 @@ import {
   Favorites,
   Container,
   ContainerFilter,
-  LinkDiv
+  LinkDiv,
+  Add
 } from './HeaderHome.styled';
 import { Filter } from '../Filter/Filter';
 import { LogOutButton } from 'components/LogOutButton/LogOutButton';
@@ -23,8 +24,12 @@ export const HeaderHome = () => {
           <ApicoLogo />
         </LinkItem>
         <LinkDiv>
-          <LinkItem to="/add">ADD</LinkItem>
-          <LinkItem to="/favorites"><Favorites/></LinkItem>
+          {logged && (
+            <Add>
+              <LinkItem to="/add">+ ADD</LinkItem>
+            </Add>
+          )}
+          {logged && <LinkItem to="/favorites"><Favorites/></LinkItem>}
           {logged ? <LogOutButton /> : <LinkItem to="/login">login</LinkItem>}
         </LinkDiv>
       </Container>

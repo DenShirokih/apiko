@@ -21,6 +21,7 @@ export const ItemCard = ({ title, location, price, photo, id }) => {
   const [value, setValue] = useState(false);
   const uid = useSelector(authSelectors.getId);
   const { array } = useGetFavoritesItems();
+  console.log(array)
 
 
   const favoritesCardsId = id => {
@@ -44,7 +45,7 @@ export const ItemCard = ({ title, location, price, photo, id }) => {
     }
   };
 
-  const toggle = id => {
+  const switchToggle = id => {
     setValue(prev => !prev);
     favoritesCardsId(id);
   };
@@ -60,7 +61,7 @@ console.log(value)
             <LikeButton
               type="checkbox"
               checked={value}
-              onChange={() => toggle(id)}
+              onChange={() => switchToggle(id)}
             />
             <LikeLogo />
           </Label>

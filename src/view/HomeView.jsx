@@ -1,14 +1,15 @@
 import { HeaderHome } from 'components/Home/HeaderHome/HeaderHome';
 import { ItemList } from 'components/Home/Home/ItemList/ItemList';
-// import { ToastContainer, toast } from 'react-toastify';
 import { useGetAllItems } from 'hooks/useGetAllItems';
+import { Category } from 'components/Home/Category/Category';
 
 export const HomeView = () => {
   const items = useGetAllItems()
   return (
     <>
       <HeaderHome />
-      {items && <ItemList item={items} />}
+      <Category/>
+      {items && <ItemList items={items} />}
     </>
   );
 };

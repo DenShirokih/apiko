@@ -12,7 +12,7 @@ export const Header = styled.header`
 `;
 
 export const Container = styled.div`
-  max-width: 1096px;
+  max-width: 1196px;
   margin: 0 auto;
   display: flex;
   padding: 30px;
@@ -25,9 +25,8 @@ export const LinkItem = styled(Link)`
   color: #ffffff;
   text-transform: uppercase;
   text-decoration: none;
-  :not(:last-child) {
-    margin-right: 75px;
-  }
+  padding: 8px 35px;
+  
 `;
 
 export const Button = styled.button`
@@ -50,4 +49,18 @@ export const Favorites = styled(FavoritesLogo)`
 export const LinkDiv = styled.div`
   display: flex;
   align-items: center;
+`
+
+export const Add = styled.div`
+  width: 130px;
+  height: 30px;
+  color: #ffffff;
+  background-color: #349A89;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin-right:  30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 `

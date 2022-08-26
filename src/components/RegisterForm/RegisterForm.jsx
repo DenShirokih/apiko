@@ -6,10 +6,6 @@ import { setAuthToken, setUser } from 'redux/authSlice';
 import * as yup from 'yup';
 import React, { useState } from 'react';
 import { IoEyeOutline, IoEyeOff } from 'react-icons/io5';
-import { Navigate, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { authSelectors } from 'redux/authSelectors';
-
 import {
   ContainerForm,
   TitleDiv,
@@ -27,30 +23,49 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 const schema = yup.object().shape({
-  name: yup.string().required(),
+  name: yup
+    .string()
+    .required()
+    .matches(/^\s*[\S]+(\s[\S]+)+\s*$/gms, 'Please enter your full name.')
+    .matches(
+      /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
+      'Name can only contain Latin letters.'
+    ),
   email: yup.string().required(),
   password: yup.string().required(),
 });
+
+
 
 const values = {
   name: '',
   email: '',
   password: '',
+  configPassword: '',
 };
 
 export const RegisterForm = () => {
   const [statePass, setStatePass] = useState(false);
+  const [statePassConfig, setStatePassConfig] = useState(false);
+
   const toggleBtn = () => {
     setStatePass(prevState => !prevState);
   };
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const logged = useSelector(authSelectors.getloggedIn);
-  if (logged) {
-    return <Navigate to="/" state={{ from: location }} />;
-  }
 
-  const handleSubmit = ({ name, email, password }, { resetForm }) => {
+  const toggleBtnConfig = () => {
+    setStatePassConfig(prevState => !prevState);
+  };
+
+  const dispatch = useDispatch();
+ 
+  const handleSubmit = (
+    { name, email, password, configPassword },
+    { resetForm }
+  ) => {
+    if (password !== configPassword) {
+      toast.error(`Password does not match!!!`);
+      return;
+    }
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
@@ -90,7 +105,7 @@ export const RegisterForm = () => {
             </label>
             <label htmlFor="name">
               <DescriptionTitle>full name</DescriptionTitle>
-              <Input type="text" name="name" placeholder="name..." />
+              <Input type="text" name="name" placeholder="Full name..." />
             </label>
             <label htmlFor="password">
               <DescriptionTitle>password</DescriptionTitle>
@@ -100,23 +115,21 @@ export const RegisterForm = () => {
                   name="password"
                   placeholder="Password..."
                 />
-                <BtnEye onClick={toggleBtn}>
+                <BtnEye onClick={toggleBtn} type="button">
                   {statePass ? <IoEyeOff /> : <IoEyeOutline />}
                 </BtnEye>
               </Wrapper>
             </label>
-            <label htmlFor="password">
+            <label htmlFor="configPassword">
               <DescriptionTitle>repeat password</DescriptionTitle>
               <Wrapper>
                 <Input
-                  type={statePass ? 'text' : 'password'}
-                  name="password"
-                  placeholder="Password..."
+                  type={statePassConfig ? 'text' : 'password'}
+                  name="configPassword"
+                  placeholder="Config the password..."
                 />
-                <BtnEye onClick={toggleBtn}>
-                <BtnEye type='button' onClick={toggleBtn}>
-                  {statePass ? <IoEyeOff /> : <IoEyeOutline />}
-                </BtnEye>
+                <BtnEye type="button" onClick={toggleBtnConfig}>
+                  {statePassConfig ? <IoEyeOff /> : <IoEyeOutline />}
                 </BtnEye>
               </Wrapper>
             </label>

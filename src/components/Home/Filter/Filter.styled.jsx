@@ -1,14 +1,17 @@
 import styled from "@emotion/styled";
+import { Form, Field } from "formik";
 
 
 
-export const Form = styled.form`
+export const Forma = styled(Form)`
     padding-bottom: 14px;
 `
-export const Input = styled.input`
+export const Input = styled(Field)`
     height:50px;
     width: 465px;
     margin-right: 7px;
+    font-size: 18px;
+    padding-left: 15px;
 `
 export const Select = styled.select`
     height: 50px;
