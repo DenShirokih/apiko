@@ -18,6 +18,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setFavorites } from 'redux/authSlice';
 
 export const ItemCard = ({ title, location, price, photo, id }) => {
+  const isLoggerIn = useSelector(authSelectors.getloggedIn);
   const uid = useSelector(authSelectors.getId);
   const favorites = useSelector(authSelectors.getFavorites);
   const dispatch = useDispatch();
@@ -28,13 +29,11 @@ export const ItemCard = ({ title, location, price, photo, id }) => {
     const postListIdRef = ref(db, `favorites/users/` + uid);
 
     if (isChoosen) {
-   
       const deleteFavorites = favorites.filter(item => item.id !== id);
       console.log(deleteFavorites);
       dispatch(setFavorites(deleteFavorites));
       set(postListIdRef, deleteFavorites);
     } else {
-
       const addFavorites = favorites.map(item => item);
       addFavorites.push({ id: id });
       dispatch(setFavorites(addFavorites));
@@ -48,7 +47,13 @@ export const ItemCard = ({ title, location, price, photo, id }) => {
         <ImgItem src={photo} alt={title} />
         <Like>
           <Label>
-            <LikeButton type="checkbox" onClick={() => favoritesCardsId(id)} />
+            {isLoggerIn && (
+              <LikeButton
+                type="checkbox"
+                onClick={() => favoritesCardsId(id)}
+              />
+            )}
+
             {isChoosen ? <ActiveLogoLike /> : <LikeLogo />}
           </Label>
         </Like>

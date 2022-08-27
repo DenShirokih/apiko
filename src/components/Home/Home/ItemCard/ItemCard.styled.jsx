@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { ReactComponent as LogoLike } from 'icons/like.svg';
-import { ReactComponent as ActiveLike } from 'icons/like.svg';
+import { ReactComponent as LogoLike } from 'icons/like2.svg';
+import { ReactComponent as ActiveLike } from 'icons/like2.svg';
 
 export const ActiveLogoLike = styled(ActiveLike)`
   position: absolute;
@@ -9,8 +9,8 @@ export const ActiveLogoLike = styled(ActiveLike)`
   transform: translate(-50%, -50%);
   width: 17px;
   height: 17px;
-  color:  #349a89;
-  
+  color: #349a89;
+  stroke: black;
 `;
 
 export const ItemWrapper = styled.li`
@@ -79,6 +79,8 @@ export const LikeLogo = styled(LogoLike)`
   transform: translate(-50%, -50%);
   width: 17px;
   height: 17px;
+  color: white;
+  stroke: black;
 `;
 
 export const LikeButton = styled.input`
