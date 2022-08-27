@@ -17,6 +17,9 @@ import React from 'react';
 
 export const HeaderHome = () => {
   const logged = useSelector(authSelectors.getloggedIn);
+  
+
+
   return (
     <Header>
       <Container>
@@ -35,6 +38,7 @@ export const HeaderHome = () => {
       </Container>
       <ContainerFilter>
         <Filter />
+
       </ContainerFilter>
     </Header>
   );
