@@ -1,7 +1,17 @@
 import styled from '@emotion/styled';
-import {ReactComponent as LogoLike} from 'icons/like.svg'
-import { useSelector } from 'react-redux';
+import { ReactComponent as LogoLike } from 'icons/like.svg';
+import { ReactComponent as ActiveLike } from 'icons/like.svg';
 
+export const ActiveLogoLike = styled(ActiveLike)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 17px;
+  height: 17px;
+  color:  #349a89;
+  
+`;
 
 export const ItemWrapper = styled.li`
   padding: 4px;
@@ -43,42 +53,36 @@ export const ItemLocation = styled.p`
 `;
 
 export const Like = styled.div`
-position: absolute;
-bottom: -12px;
-right: 8px;
+  position: absolute;
+  bottom: -12px;
+  right: 8px;
   width: 30px;
   height: 30px;
-  border:  1px solid #F2F2F2;
+  border: 1px solid #f2f2f2;
   border-radius: 50%;
   background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
- 
- 
-`
-export const Label = styled.label`
-   cursor: pointer;
-   padding: 10px;
-`
+`;
 
+export const Label = styled.label`
+  cursor: pointer;
+  padding: 10px;
+  background-color: transparent;
+`;
 
 export const LikeLogo = styled(LogoLike)`
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-background-color: transparent;
-
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 17px;
   height: 17px;
-  :hover{
-    background-color: #349a89;
-  }
-`
+`;
 
 export const LikeButton = styled.input`
-position: relative;
+  position: relative;
   padding: 10px;
   display: none;
   border: none;
@@ -86,6 +90,4 @@ position: relative;
   width: 30px;
   height: 30px;
   background-color: transparent;
-
-  
-`
+`;

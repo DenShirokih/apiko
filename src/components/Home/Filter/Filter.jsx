@@ -10,7 +10,6 @@ const initialValues ={
 
 export const Filter = () => {
   const items = useGetAllItems()
-  console.log(items)
 
   const handleSubmit = (values) =>{
     
