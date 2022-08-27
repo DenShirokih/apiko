@@ -10,47 +10,37 @@ import {
   LikeButton,
   LikeLogo,
   Label,
+  ActiveLogoLike,
 } from './ItemCard.styled';
-import { useState } from 'react';
-import { getDatabase, ref, set, push, remove } from 'firebase/database';
+import { getDatabase, ref, set } from 'firebase/database';
 import { authSelectors } from 'redux/authSelectors';
-import { useSelector } from 'react-redux';
-import { useGetFavoritesItems } from 'hooks/useGetFavoritesItems';
+import { useSelector, useDispatch } from 'react-redux';
+import { setFavorites } from 'redux/authSlice';
 
 export const ItemCard = ({ title, location, price, photo, id }) => {
-  const [value, setValue] = useState(false);
   const uid = useSelector(authSelectors.getId);
-  const { array } = useGetFavoritesItems();
-  console.log(array)
-
+  const favorites = useSelector(authSelectors.getFavorites);
+  const dispatch = useDispatch();
+  const isChoosen = favorites.flatMap(item => item.id).includes(id);
 
   const favoritesCardsId = id => {
     const db = getDatabase();
     const postListIdRef = ref(db, `favorites/users/` + uid);
 
-    if (value) {
-      for (let i = 0; i <= array.length; i++) {
-        if (array[i][1].id === id) {
-          const key = array[i][0]
-          const delListIdRef = ref(db, `favorites/users/${uid}/${key}`);
-          remove(delListIdRef)
-          return;
-        }
-      }
+    if (isChoosen) {
+   
+      const deleteFavorites = favorites.filter(item => item.id !== id);
+      console.log(deleteFavorites);
+      dispatch(setFavorites(deleteFavorites));
+      set(postListIdRef, deleteFavorites);
     } else {
-      const newPostIdRef = push(postListIdRef);
-      set(newPostIdRef, {
-        id: id,
-      });
+
+      const addFavorites = favorites.map(item => item);
+      addFavorites.push({ id: id });
+      dispatch(setFavorites(addFavorites));
+      set(postListIdRef, addFavorites);
     }
   };
-
-  const switchToggle = id => {
-    setValue(prev => !prev);
-    favoritesCardsId(id);
-  };
-
-console.log(value)
 
   return (
     <ItemWrapper>
@@ -58,12 +48,8 @@ console.log(value)
         <ImgItem src={photo} alt={title} />
         <Like>
           <Label>
-            <LikeButton
-              type="checkbox"
-              checked={value}
-              onChange={() => switchToggle(id)}
-            />
-            <LikeLogo />
+            <LikeButton type="checkbox" onClick={() => favoritesCardsId(id)} />
+            {isChoosen ? <ActiveLogoLike /> : <LikeLogo />}
           </Label>
         </Like>
       </ImgWrapper>

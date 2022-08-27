@@ -18,7 +18,7 @@ export const AddProductHeader = () => {
       return
     }
     const matches = userName.match(/\b(\w)/g);
-     const firstLetter = matches.join('');
+     const firstLetter = matches.join(' ');
      return firstLetter
   }
 

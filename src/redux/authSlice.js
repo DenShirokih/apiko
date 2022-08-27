@@ -4,6 +4,7 @@ const initialState = {
   token: null,
   id: null,
   isLoggedIn: false,
+  favorites: [],
 };
 
 export const authSlice = createSlice({
@@ -24,7 +25,10 @@ export const authSlice = createSlice({
       state.isLoggedIn = true;
       state.id = payload.id;
     },
+    setFavorites(state, { payload }){
+      state.favorites = payload
+    }
   },
 });
 
-export const { setAuthToken, removeUser, setUser } = authSlice.actions;
+export const { setAuthToken, removeUser, setUser, setFavorites} = authSlice.actions;
