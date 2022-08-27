@@ -7,7 +7,7 @@ import {
 } from 'components/Home/Home/ItemList/ItemList.styled';
 
 export const FavoritesCards = () => {
-  const {items, keys} = useGetFavoritesItems();
+  const {items} = useGetFavoritesItems();
   const ids = items.flatMap(item => item.id);
   const AllItems = useGetAllItems();
 

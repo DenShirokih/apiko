@@ -7,16 +7,40 @@ import { itemsSelectors } from 'redux/itemsSelectors';
 
 export const HomeView = () => {
   const filtredItems = useSelector(itemsSelectors.getFilter);
-  console.log(filtredItems.length);
+  const itemLocation = useSelector(itemsSelectors.getLocation);
   const items = useGetAllItems();
+
+  const filterItemsByLocation =(array) => {
+    if (!itemLocation) {
+      return array;
+    } else {
+      const itemsLocationForFilter = array.filter(item => item.location === itemLocation);
+      return itemsLocationForFilter;
+    }
+  }
+
+//==== Вирант Денис
+
+  // const filterItems =() => {
+  //  if(filtredItems.length > 0){
+  //   const sortedItems = items.filter(item =>
+  //     item.title.toLowerCase().includes(filtredItems)
+  //   );
+  //   return sortedItems
+  //  }
+  //  return items
+  // }
+
+
+
   return (
     <>
       <HeaderHome />
       <Category />
       {filtredItems.length > 0 ? (
-        <ItemList items={filtredItems} />
+        <ItemList items={filterItemsByLocation(filtredItems)} />
       ) : (
-        <ItemList items={items} />
+        <ItemList items={filterItemsByLocation(items)}  />
       )}
     </>
   );

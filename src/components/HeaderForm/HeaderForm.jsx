@@ -1,4 +1,4 @@
-import { LinkItem, Container, ApicoLogo, Button } from './HeaderForm.styled';
+import { LinkItem, Container, ApicoLogo } from './HeaderForm.styled';
 
 export const HeaderForm = () => {
   return (
