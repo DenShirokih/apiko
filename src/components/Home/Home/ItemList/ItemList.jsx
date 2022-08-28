@@ -1,12 +1,13 @@
 import { ItemCard } from '../ItemCard/ItemCard';
 import { ItemsWrapper, UlItem } from './ItemList.styled';
-
-export const ItemList = ({ items }) => {
-  
+import { useSelector } from 'react-redux';
+import { itemsSelectors } from 'redux/itemsSelectors';
+export const ItemList = () => {
+  const items = useSelector(itemsSelectors.getAllProducts);
   return (
     <ItemsWrapper>
       <UlItem>
-        {items.map(({ title, location, description,  price, id, photo }) => (
+        {items.map(({ title, location, description, price, id, photo }) => (
           <ItemCard
             key={id}
             id={id}
@@ -14,7 +15,7 @@ export const ItemList = ({ items }) => {
             location={location}
             description={description}
             price={price}
-            photo={photo}        
+            photo={photo}
           />
         ))}
       </UlItem>

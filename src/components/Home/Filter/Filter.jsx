@@ -5,50 +5,45 @@ import {
   Button,
   BtnClearInput,
   InputWrapper,
-  SearchLogo
+  SearchLogo,
 } from './Filter.styled';
 import { Formik } from 'formik';
-import { useGetAllItems } from 'hooks/useGetAllItems';
 import { useDispatch } from 'react-redux';
 import { MdOutlineClose } from 'react-icons/md';
-import { setFilter, clearFilter } from 'redux/itemsSlice';
 import { SelectLocation } from '../SelectLocation/SelectLocation';
-
+import { useSelector } from 'react-redux';
+import { itemsSelectors } from 'redux/itemsSelectors';
+import { products } from 'redux/itemsSlice';
+import { useGetAllItems } from 'hooks/useGetAllItems';
+import { setSearch } from 'redux/filtersSlice';
 
 const initialValues = {
   search: '',
 };
 
 export const Filter = () => {
-  const clearinput = () => {
-    dispatch(clearFilter());
-  };
-
   const dispatch = useDispatch();
-  const items = useGetAllItems();
+
   const handleSubmit = values => {
-    const normalaizedFilter = values.search.toLowerCase();
-    const filtredItems = items.filter(item =>
-      item.title.toLowerCase().includes(normalaizedFilter)
-    );
-    dispatch(setFilter(filtredItems));
-    return 
+    dispatch(setSearch(values.search));
+
+    return;
   };
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <Forma autoComplete="off">
         <InputWrapper>
-          <SearchLogo/>
+          <SearchLogo />
           <Input
             type="text"
             name="search"
             placeholder="Search products by name"
           />
           <BtnClearInput type="button">
-            <MdOutlineClose onClick={() => clearinput()} />
+            <MdOutlineClose onClick={useGetAllItems()} />
           </BtnClearInput>
-          <SelectLocation items={items}/>
+          {/* <SelectLocation /> */}
           <Button type="submit">Search</Button>
         </InputWrapper>
       </Forma>

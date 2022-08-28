@@ -1,40 +1,31 @@
 import Select from 'react-select';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLocation } from 'redux/itemsSlice';
 import { itemsSelectors } from 'redux/itemsSelectors';
+import { products } from 'redux/itemsSlice';
 
-export const SelectLocation = ({ items }) => {
+export const SelectLocation = () => {
   const dispatch = useDispatch();
-  const filtredItems = useSelector(itemsSelectors.getFilter);
 
-  const filterLocationByItems = (array) => {
-    const itemLocation = array.map(item => {
-        return { location: item.location, label: item.location };
-      });
-      const allItemsLocation = [
-        ...itemLocation,
-        { location: '', label: 'all' },
-      ];
-      return allItemsLocation
-  }
+  const items = useSelector(itemsSelectors.getAllProducts);
 
-  const filtredLocation = () => {
-    if (filtredItems.length > 0) {
-      return filterLocationByItems(filtredItems)
-    } else {
-       return filterLocationByItems(items)
-    }
+  const filterLocationByItems = () => {
+    const itemLocation = items.map(item => {
+      return { location: item.location, label: item.location };
+    });
+    const allItemsLocation = [{ location: '', label: 'all' }, ...itemLocation];
+    return allItemsLocation;
   };
 
   const findSelectedLocation = e => {
-    dispatch(setLocation(e.location));
+    const filtred = items.filter(item => item.location.includes(e.location));
+    console.log(e.location);
+    dispatch(products(filtred));
   };
-
   return (
     <>
       <Select
-        options={filtredLocation()}
+        options={filterLocationByItems()}
         onChange={e => findSelectedLocation(e)}
       />
     </>
