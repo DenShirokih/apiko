@@ -5,15 +5,15 @@ import {
   Button,
   BtnClearInput,
   InputWrapper,
-  SearchLogo
+  SearchLogo,
 } from './Filter.styled';
 import { Formik } from 'formik';
 import { useGetAllItems } from 'hooks/useGetAllItems';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineClose } from 'react-icons/md';
 import { setFilter, clearFilter } from 'redux/itemsSlice';
+import { itemsSelectors } from 'redux/itemsSelectors';
 import { SelectLocation } from '../SelectLocation/SelectLocation';
-
 
 const initialValues = {
   search: '',
@@ -24,6 +24,9 @@ export const Filter = () => {
     dispatch(clearFilter());
   };
 
+  const filterStore = useSelector(itemsSelectors.getFilter);
+  console.log(filterStore);
+
   const dispatch = useDispatch();
   const items = useGetAllItems();
   const handleSubmit = values => {
@@ -32,14 +35,14 @@ export const Filter = () => {
       item.title.toLowerCase().includes(normalaizedFilter)
     );
     dispatch(setFilter(filtredItems));
-    return 
+    return;
   };
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <Forma autoComplete="off">
         <InputWrapper>
-          <SearchLogo/>
+          <SearchLogo />
           <Input
             type="text"
             name="search"
@@ -48,7 +51,7 @@ export const Filter = () => {
           <BtnClearInput type="button">
             <MdOutlineClose onClick={() => clearinput()} />
           </BtnClearInput>
-          <SelectLocation items={items}/>
+          <SelectLocation items={items} />
           <Button type="submit">Search</Button>
         </InputWrapper>
       </Forma>
