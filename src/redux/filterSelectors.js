@@ -18,6 +18,7 @@ const getSearch = state => {
   return array;
 };
 const getLocation = state => state.filters.location;
+
 export const filterSelectors = {
   getSearch,
   getLocation,
