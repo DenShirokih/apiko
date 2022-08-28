@@ -14,12 +14,14 @@ export const SelectLocation = () => {
       return { location: item.location, label: item.location };
     });
     const allItemsLocation = [{ location: '', label: 'all' }, ...itemLocation];
-    return allItemsLocation;
+    const country = {};
+    const uniqueLocation = allItemsLocation.filter(({location}) =>(!country[location] && (country[location] = 1)));
+    return uniqueLocation
   };
 
   const findSelectedLocation = e => {
     const filtred = items.filter(item => item.location.includes(e.location));
-    console.log(e.location);
+    
     dispatch(products(filtred));
   };
   return (
