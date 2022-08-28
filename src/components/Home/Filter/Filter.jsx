@@ -17,22 +17,21 @@ import { products } from 'redux/itemsSlice';
 import { useGetAllItems } from 'hooks/useGetAllItems';
 import { setSearch } from 'redux/filtersSlice';
 
-
 const initialValues = {
   search: '',
 };
 
 export const Filter = () => {
-  const items = useSelector(itemsSelectors.getAllProducts)
+  const items = useSelector(itemsSelectors.getAllProducts);
   const dispatch = useDispatch();
-  const refreshItems = useGetAllItems()
+  const refreshItems = useGetAllItems();
 
   const handleSubmit = values => {
-    const normalaizedFilter = values.search.toLowerCase();
-    const filtredItems = items.filter(item =>
-      item.title.toLowerCase().includes(normalaizedFilter)
-    );
-    dispatch(products(filtredItems))
+    // const normalaizedFilter = values.search.toLowerCase();
+    // const filtredItems = items.filter(item =>
+    //   item.title.toLowerCase().includes(normalaizedFilter)
+    // );
+    // dispatch(products(filtredItems))
     dispatch(setSearch(values.search));
     return;
   };
