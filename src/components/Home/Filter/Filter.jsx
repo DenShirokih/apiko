@@ -17,16 +17,23 @@ import { products } from 'redux/itemsSlice';
 import { useGetAllItems } from 'hooks/useGetAllItems';
 import { setSearch } from 'redux/filtersSlice';
 
+
 const initialValues = {
   search: '',
 };
 
 export const Filter = () => {
+  const items = useSelector(itemsSelectors.getAllProducts)
   const dispatch = useDispatch();
+  const refreshItems = useGetAllItems()
 
   const handleSubmit = values => {
+    const normalaizedFilter = values.search.toLowerCase();
+    const filtredItems = items.filter(item =>
+      item.title.toLowerCase().includes(normalaizedFilter)
+    );
+    dispatch(products(filtredItems))
     dispatch(setSearch(values.search));
-
     return;
   };
 
@@ -41,9 +48,9 @@ export const Filter = () => {
             placeholder="Search products by name"
           />
           <BtnClearInput type="button">
-            <MdOutlineClose onClick={useGetAllItems()} />
+            <MdOutlineClose onClick={() => dispatch(products(refreshItems))} />
           </BtnClearInput>
-          {/* <SelectLocation /> */}
+          <SelectLocation />
           <Button type="submit">Search</Button>
         </InputWrapper>
       </Forma>

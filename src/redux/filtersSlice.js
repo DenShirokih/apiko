@@ -1,12 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  search: '',
+  title: '',
   location: null,
-  price: {
-    min: null,
-    max: null,
-  },
+  price:null
 };
 export const filterSlice = createSlice({
   name: 'filters',
@@ -16,7 +13,7 @@ export const filterSlice = createSlice({
       state.price.min = null;
       state.price.max = null;
       state.location = null;
-      state.search = '';
+      state.title = '';
     },
     setPrice(state, { payload }) {
       state.price.min = payload.min;
@@ -26,7 +23,7 @@ export const filterSlice = createSlice({
       state.location = payload;
     },
     setSearch(state, { payload }) {
-      state.search = payload;
+      state.title = payload;
     },
   },
 });
