@@ -3,21 +3,24 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   title: '',
   location: '',
-  price: null,
+  maxPrice: '100501',
+  minPrice: 0,
 };
 export const filterSlice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
     clearFilter(state) {
-      state.price.min = null;
-      state.price.max = null;
+      state.minPrice = null;
+      state.maxPrice = null;
       state.location = null;
       state.title = '';
     },
-    setPrice(state, { payload }) {
-      state.price.min = payload.min;
-      state.price.max = payload.max;
+    setMaxPrice(state, { payload }) {
+      state.maxPrice = payload;
+    },
+    setMinPrice(state, {payload}){
+      state.minPrice = payload;
     },
     setLocation(state, { payload }) {
       state.location = payload;
@@ -27,4 +30,4 @@ export const filterSlice = createSlice({
     },
   },
 });
-export const { setPrice, setLocation, setSearch } = filterSlice.actions;
+export const { setMaxPrice, setMinPrice,  setLocation, setSearch } = filterSlice.actions;

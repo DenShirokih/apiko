@@ -6,9 +6,20 @@ import {
   GridLogo,
 } from './Category.styled';
 import { Formik, Form } from 'formik';
+import { useDispatch } from 'react-redux';
+import { setMaxPrice, setMinPrice } from 'redux/filtersSlice';
 
 export const Category = () => {
-  const handleSubmit = e => {};
+  const dispatch = useDispatch()
+  const handleSubmit = e => {
+    if(e.target.name === "min"){
+      dispatch(setMinPrice(e.target.value))
+      return
+    }
+    dispatch(setMaxPrice(e.target.value))
+  };
+
+
   return (
     <Container>
       <Background>
