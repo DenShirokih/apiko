@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   title: '',
-  location: null,
-  price:null
+  location: '',
+  price: null,
 };
 export const filterSlice = createSlice({
   name: 'filters',
