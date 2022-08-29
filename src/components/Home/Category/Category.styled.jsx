@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import {ReactComponent as Grid} from 'icons/grid.svg'
+import Select from 'react-select';
+
 
 export const Container = styled.div`
   margin: 0 auto;
@@ -24,7 +26,7 @@ export const Background = styled.div`
   margin-bottom: 15px;
 `;
 
-export const Select = styled.select`
+export const SelectCategory = styled(Select)`
   width: 285px;
   height: 35px;
   background-color:#F2F2F2;
@@ -37,6 +39,7 @@ export const Input = styled.input`
   height: 35px;
   background-color: #F2F2F2;
   border: 1px solid #dedee0;  border-radius: 5px;
+  padding-left: 10px;
   :not(:last-child){
     margin-right: 24px;
   }

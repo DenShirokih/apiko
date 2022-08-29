@@ -2,7 +2,6 @@ import Select from 'react-select';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { itemsSelectors } from 'redux/itemsSelectors';
-import { products } from 'redux/itemsSlice';
 import { setLocation } from 'redux/filtersSlice';
 
 export const SelectLocation = () => {
@@ -24,8 +23,6 @@ export const SelectLocation = () => {
 
   const findSelectedLocation = e => {
     dispatch(setLocation(e.location));
-    // const filtred = items.filter(item => item.location.includes(e.location));
-    // dispatch(products(filtred));
   };
   return (
     <>

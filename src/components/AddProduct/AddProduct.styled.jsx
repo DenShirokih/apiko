@@ -61,7 +61,7 @@ export const ImgDiv = styled.div`
   width: 664px;
   height: 124px;
   background-color: #f9fafb;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   border: 1px solid #dedee0;
   border-radius: 10px;
 `;
@@ -89,4 +89,19 @@ position: absolute;
   width: 42px;
   height: 42px;
   background-color: transparent;
+`
+
+// export const KidOfTur = styled.div`
+//     width: 664px;
+//   height: 58px;
+//   border: 1px solid #dedee0;
+//   background-color: #f9fafb;
+//   border-radius: 10px;
+//   margin-bottom: 24px;
+// `
+
+export const Tour = styled.label`
+:not(:last-child){
+  margin-right: 10px;
+}
 `
