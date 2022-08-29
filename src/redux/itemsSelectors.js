@@ -1,23 +1,23 @@
-
-
 const getFilter = state => state.items.filter;
 const getLocation = state => state.items.location;
 const getAllProducts = state => state.items.products;
 const getFiltredProducts = state =>
   state.items.products.filter(item => {
     const filter = state.filters;
-    const filterLocationTitle =
-      item.title.toLowerCase().includes(filter.title) &&
-      item.location.includes(filter.location) 
-      // && item.kindOfTuor
-      
-    return filter.maxPrice && filter.minPrice
-      ? filterLocationTitle &&
-          Number(item.price) <= Number(filter.maxPrice) &&
-          Number(item.price) >= Number(filter.minPrice) 
-      : filterLocationTitle;
-  });
+    const { kindOfTuor, title, location } = item;
+    const filtedItems =
+      title.toLowerCase().includes(filter.title) &&
+      location.includes(filter.location) && 
+      filter.kindOfTuor ? kindOfTuor.includes(filter.kindOfTuor) : true
+ 
 
+    return filter.maxPrice && filter.minPrice
+      ? filtedItems &&
+          Number(item.price) <= Number(filter.maxPrice) &&
+          Number(item.price) >= Number(filter.minPrice)
+      : filtedItems;
+  });
+  
 export const itemsSelectors = {
   getLocation,
   getFilter,
