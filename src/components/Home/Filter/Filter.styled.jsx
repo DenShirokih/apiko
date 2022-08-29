@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Form, Field } from 'formik';
 import {ReactComponent as Logo} from 'icons/search_icon.svg'
+import {ReactComponent as Location} from 'icons/location.svg'
 
 export const BtnClearInput = styled.button`
   background-color: transparent;
@@ -15,6 +16,7 @@ export const BtnClearInput = styled.button`
 export const InputWrapper = styled.div`
   display: flex;
   position: relative;
+  align-items: center;
 `
 export const Forma = styled(Form)`
   padding-bottom: 14px;
@@ -26,11 +28,6 @@ export const Input = styled(Field)`
   font-size: 18px;
   padding-left: 40px;
   border-radius: 5px;
-`;
-export const Selector = styled.select`
-  height: 50px;
-  width: 190px;
-  margin-right: 7px;
 `;
 
 export const Button = styled.button`
@@ -47,4 +44,12 @@ top: 15px;
 left: 14px;
   width: 20px;
   height: 20px;
+`
+export const LocationLoge = styled(Location)`
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 350px;
+  top: 10;
+  z-index: 500;
 `

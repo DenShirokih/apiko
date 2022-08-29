@@ -4,7 +4,7 @@ const initialState = {
   title: '',
   location: '',
   maxPrice: '',
-  minPrice: '',
+  minPrice: "0",
   kindOfTuor: '',
 };
 export const filterSlice = createSlice({
@@ -14,8 +14,9 @@ export const filterSlice = createSlice({
     clearFilter(state) {
       state.minPrice = null;
       state.maxPrice = null;
-      state.location = null;
+      state.location = "";
       state.title = '';
+      state.kindOfTuor = ''
     },
     setMaxPrice(state, { payload }) {
       state.maxPrice = payload;
@@ -29,9 +30,10 @@ export const filterSlice = createSlice({
     setSearch(state, { payload }) {
       state.title = payload;
     },
-    setKidOfTour (state, {payload}){
+    setKindOfTour (state, {payload}){
       state.kindOfTuor = payload;
-    }
+    },
+  
   },
 });
-export const { setKidOfTour, setMaxPrice, setMinPrice,  setLocation, setSearch } = filterSlice.actions;
+export const { setKindOfTour, setMaxPrice, setMinPrice,  setLocation, setSearch, clearFilter } = filterSlice.actions;

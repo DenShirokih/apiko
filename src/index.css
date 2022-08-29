@@ -42,3 +42,6 @@ img {
   justify-content: space-between;
 }
 
+.react-select__control{
+  height: 48px;
+}
