@@ -4,8 +4,8 @@ const initialState = {
   title: '',
   location: '',
   maxPrice: '',
-  minPrice: 0,
-  kidOfTour: [],
+  minPrice: '',
+  kindOfTuor: '',
 };
 export const filterSlice = createSlice({
   name: 'filters',
@@ -30,7 +30,7 @@ export const filterSlice = createSlice({
       state.title = payload;
     },
     setKidOfTour (state, {payload}){
-      state.kidOfTour = payload;
+      state.kindOfTuor = payload;
     }
   },
 });
