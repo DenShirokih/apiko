@@ -2,14 +2,22 @@ import React from 'react';
 import {
   Container,
   Background,
-  SelectCategory,
   GridLogo,
+  SelectElement
 } from './Category.styled';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { itemsSelectors } from 'redux/itemsSelectors';
-import { setKidOfTour } from 'redux/filtersSlice';
+import { setKindOfTour } from 'redux/filtersSlice';
 import { Price } from '../Price/Price';
+
+
+const customStyles = {
+  option: state => ({
+    color: state.isSelected && 'white',
+    padding: 10,
+  }),
+};
 
 export const Category = () => {
   const items = useSelector(itemsSelectors.getAllProducts);
@@ -35,19 +43,21 @@ export const Category = () => {
   };
 
   const findSelectCategory = e => {
-    dispatch(setKidOfTour(e.category))
-  }
+    dispatch(setKindOfTour(e.category));
+  };
 
   return (
     <Container>
       <Background>
         <GridLogo />
-        <SelectCategory
+        <SelectElement
+          classNamePrefix="react-select"
+          styles={customStyles}
           options={filterLocationByItems()}
           onChange={e => findSelectCategory(e)}
           placeholder="Choose Category"
         />
-        <Price/>
+        <Price />
       </Background>
     </Container>
   );

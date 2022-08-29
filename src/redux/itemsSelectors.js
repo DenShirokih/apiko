@@ -1,4 +1,3 @@
-const getFilter = state => state.items.filter;
 const getLocation = state => state.items.location;
 const getAllProducts = state => state.items.products;
 const getFiltredProducts = state =>
@@ -7,11 +6,11 @@ const getFiltredProducts = state =>
     const { kindOfTuor, title, location } = item;
     const filtedItems =
       title.toLowerCase().includes(filter.title) &&
-      location.includes(filter.location) && 
-      filter.kindOfTuor ? kindOfTuor.includes(filter.kindOfTuor) : true
- 
+      location.includes(filter.location) &&
+      !kindOfTuor.includes(filter.kindOfTuor)
+      // filter.kindOfTuor ? kindOfTuor.includes(filter.kindOfTuor) : true
 
-    return filter.maxPrice && filter.minPrice
+    return  filter.maxPrice 
       ? filtedItems &&
           Number(item.price) <= Number(filter.maxPrice) &&
           Number(item.price) >= Number(filter.minPrice)
@@ -20,7 +19,6 @@ const getFiltredProducts = state =>
   
 export const itemsSelectors = {
   getLocation,
-  getFilter,
   getAllProducts,
   getFiltredProducts,
 };

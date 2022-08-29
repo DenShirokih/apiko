@@ -6,27 +6,29 @@ import {
   BtnClearInput,
   InputWrapper,
   SearchLogo,
+  LocationLoge
 } from './Filter.styled';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { MdOutlineClose } from 'react-icons/md';
 import { SelectLocation } from '../SelectLocation/SelectLocation';
-import { products } from 'redux/itemsSlice';
-import { useGetAllItems } from 'hooks/useGetAllItems';
 import { setSearch } from 'redux/filtersSlice';
+import { clearFilter } from 'redux/filtersSlice';
 
 const initialValues = {
   search: '',
 };
 
 export const Filter = () => {
-  const dispatch = useDispatch();
-  const refreshItems = useGetAllItems();
 
+  const dispatch = useDispatch();
   const handleSubmit = values => {
     dispatch(setSearch(values.search));
     return;
   };
+
+ 
+
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -39,8 +41,9 @@ export const Filter = () => {
             placeholder="Search products by name"
           />
           <BtnClearInput type="button">
-            <MdOutlineClose onClick={() => dispatch(products(refreshItems))} />
+            <MdOutlineClose onClick={()=>dispatch(clearFilter())} />
           </BtnClearInput>
+          <LocationLoge/>
           <SelectLocation />
           <Button type="submit">Search</Button>
         </InputWrapper>

@@ -30,7 +30,6 @@ export const ItemCard = ({ title, location, price, photo, id }) => {
 
     if (isChoosen) {
       const deleteFavorites = favorites.filter(item => item.id !== id);
-      console.log(deleteFavorites);
       dispatch(setFavorites(deleteFavorites));
       set(postListIdRef, deleteFavorites);
     } else {

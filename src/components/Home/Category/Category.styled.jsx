@@ -11,6 +11,9 @@ export const Container = styled.div`
 export const GridLogo = styled(Grid)`
   width: 17px;
   height: 17px;
+  position: absolute;
+  z-index: 500;
+  left: 20px;
 `
 
 
@@ -24,13 +27,33 @@ export const Background = styled.div`
   box-shadow: 0px, 1px rgba(0, 0, 0, 0.2171);
   padding-left: 11px;
   margin-bottom: 15px;
+  position: relative;
 `;
 
-export const SelectCategory = styled(Select)`
-  width: 285px;
-  height: 35px;
-  background-color:#F2F2F2;
-  margin-right: 23px;
-  border: 1px solid #dedee0;  border-radius: 5px;
-`;
 
+
+export const SelectElement = styled(Select)`
+  .react-select-container {
+    // custom styles
+  }
+
+  .react-select__control {
+    // custom styles
+    font-size: 14px;
+    width: 285px;
+    height: 35px;
+    margin-right: 23px;
+    padding-left: 30px;
+    
+  }
+
+  .react-select__indicators {
+    // custom styles
+    width: 35px;
+  }
+  .react-select__option{
+    color: black;
+    font-size: 16px;
+  }
+
+`;
