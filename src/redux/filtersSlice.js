@@ -3,8 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   title: '',
   location: '',
-  maxPrice: '100501',
+  maxPrice: '',
   minPrice: 0,
+  kidOfTour: [],
 };
 export const filterSlice = createSlice({
   name: 'filters',
@@ -28,6 +29,9 @@ export const filterSlice = createSlice({
     setSearch(state, { payload }) {
       state.title = payload;
     },
+    setKidOfTour (state, {payload}){
+      state.kidOfTour = payload;
+    }
   },
 });
-export const { setMaxPrice, setMinPrice,  setLocation, setSearch } = filterSlice.actions;
+export const { setKidOfTour, setMaxPrice, setMinPrice,  setLocation, setSearch } = filterSlice.actions;

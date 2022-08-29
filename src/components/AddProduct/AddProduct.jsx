@@ -1,4 +1,4 @@
-import { Formik } from 'formik';
+import { Field, Formik } from 'formik';
 import { nanoid } from 'nanoid';
 import { getStorage, uploadBytes } from 'firebase/storage';
 import { ref as sRef } from 'firebase/storage';
@@ -16,11 +16,11 @@ import {
   InputAddImg,
   Upload,
   Wrapped,
+  Tour
 } from './AddProduct.styled';
 import { useState } from 'react';
 import React from 'react';
-import { toast, ToastContainer} from 'react-toastify';
-
+import { toast, ToastContainer } from 'react-toastify';
 
 const values = {
   title: '',
@@ -28,12 +28,15 @@ const values = {
   description: '',
   price: '',
   file: '',
+  kidOfTuor: '',
 };
 
 export const AddProduct = () => {
   const [file, setFile] = useState(null);
   const storage = getStorage();
   const handleSubmit = async (value, { resetForm }) => {
+
+console.log(value.checked)
     const db = getDatabase();
     const postListRef = ref(db, 'posts');
     const newPostRef = push(postListRef);
@@ -41,7 +44,7 @@ export const AddProduct = () => {
 
     const storageRef = sRef(storage, `images/${file.name}`);
     await uploadBytes(storageRef, file).then(() => {
-      toast.success('Your product have been added')
+      toast.success('Your product have been added');
       console.log('Uploaded a blob or file!');
     });
     getDownloadURL(sRef(storage, `images/${file.name}`))
@@ -54,6 +57,7 @@ export const AddProduct = () => {
           price: value.price,
           photo: url,
           toggle: false,
+          kindOfTuor: value.checked,
         };
 
         const newPostKey = push(child(ref(db), 'posts')).key;
@@ -109,6 +113,26 @@ export const AddProduct = () => {
                 onChange={e => changeHandler(e)}
               />
             </ImgDiv>
+          </div>
+          <div id="checkbox-group">
+          <div  role="group" aria-labelledby="checkbox-group">
+            <Tour>
+              Family vacation
+              <Field type="checkbox" name="checked" value="Family vacation"/>
+            </Tour>
+            <Tour >
+              Last minute tours
+              <Field type="checkbox" name="checked" value="Last minute tours"/>
+            </Tour>
+            <Tour >
+                Beach tours
+              <Field type="checkbox" name="checked" value="Beach tours"/>
+            </Tour>
+            <Tour >
+                Adventure tour
+              <Field type="checkbox" name="checked" value="Adventure tour"/>
+            </Tour>
+          </div>
           </div>
           <div>
             <Title>price</Title>
