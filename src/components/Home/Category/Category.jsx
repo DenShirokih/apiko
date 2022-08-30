@@ -11,6 +11,8 @@ import { itemsSelectors } from 'redux/itemsSelectors';
 import { setKindOfTour } from 'redux/filtersSlice';
 import { Price } from '../Price/Price';
 import { ClearFilters } from 'components/ClearFilters/ClearFilters';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const customStyles = {
   option: state => ({
@@ -21,19 +23,20 @@ const customStyles = {
 
 export const Category = () => {
   const filters = useSelector(store => store.filters);
-  console.log(filters);
+  const [property, setProperty] = useState('')
 
-  const isHasProperty = () => {
+ useEffect(()=>{
     const prov = Object.values(filters);
     for (const arr of prov) {
-      console.log(prov);
       if (arr) {
-        return true;
+        return  setProperty(true);
       }
     }
-    return false;
-  };
+    return setProperty(false);
 
+ }, [filters])
+
+ 
   const items = useSelector(itemsSelectors.getAllProducts);
   const dispatch = useDispatch();
 
@@ -72,8 +75,7 @@ export const Category = () => {
           placeholder="Choose Category"
         />
         <Price />
-        {/* <ClearFilters /> */}
-        {isHasProperty() && <ClearFilters />}
+        {property && <ClearFilters />}
       </Background>
     </Container>
   );

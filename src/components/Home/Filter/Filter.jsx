@@ -11,7 +11,6 @@ import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { SelectLocation } from '../SelectLocation/SelectLocation';
 import { setSearch } from 'redux/filtersSlice';
-// import { useSelector } from 'react-redux';
 
 const initialValues = {
   search: '',
