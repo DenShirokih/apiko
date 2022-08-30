@@ -17,7 +17,9 @@ export const ClearFilters = () => {
         form="price-form"
         type="reset"
         onClick={() => dispatch(clearFilter())}
-      ></button>
+      >
+        clear filters
+      </button>
     </>
   );
 };
