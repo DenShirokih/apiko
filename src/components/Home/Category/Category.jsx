@@ -3,14 +3,14 @@ import {
   Container,
   Background,
   GridLogo,
-  SelectElement
+  SelectElement,
 } from './Category.styled';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { itemsSelectors } from 'redux/itemsSelectors';
 import { setKindOfTour } from 'redux/filtersSlice';
 import { Price } from '../Price/Price';
-
+import { ClearFilters } from 'components/ClearFilters/ClearFilters';
 
 const customStyles = {
   option: state => ({
@@ -20,6 +20,20 @@ const customStyles = {
 };
 
 export const Category = () => {
+  const filters = useSelector(store => store.filters);
+  console.log(filters);
+
+  const isHasProperty = () => {
+    const prov = Object.values(filters);
+    for (const arr of prov) {
+      console.log(prov);
+      if (arr) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   const items = useSelector(itemsSelectors.getAllProducts);
   const dispatch = useDispatch();
 
@@ -58,6 +72,8 @@ export const Category = () => {
           placeholder="Choose Category"
         />
         <Price />
+        {/* <ClearFilters /> */}
+        {isHasProperty() && <ClearFilters />}
       </Background>
     </Container>
   );
