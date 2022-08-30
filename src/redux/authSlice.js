@@ -27,8 +27,11 @@ export const authSlice = createSlice({
     },
     setFavorites(state, { payload }){
       state.favorites = payload
+    },
+    clearFavorites(state){
+      state.favorites = []
     }
   },
 });
 
-export const { setAuthToken, removeUser, setUser, setFavorites} = authSlice.actions;
+export const { setAuthToken, removeUser, setUser, setFavorites, clearFavorites} = authSlice.actions;

@@ -27,6 +27,7 @@ export const useGetFavoritesItems = () => {
           ...data[key],
           // productId: key,
         }))
+      
         dispatch(setFavorites(favorites))
       }
     });
