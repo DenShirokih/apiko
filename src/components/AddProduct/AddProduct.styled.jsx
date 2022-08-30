@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Form, Field } from 'formik';
-import {ReactComponent as LogoUpload} from 'icons/plus-svgrepo-com.svg'
+import { ReactComponent as LogoUpload } from 'icons/plus-svgrepo-com.svg';
 
 export const Background = styled.div`
   width: 1136px;
@@ -57,9 +57,10 @@ export const Button = styled.button`
   text-transform: uppercase;
 `;
 export const ImgDiv = styled.div`
-  padding: 16px;
+  padding: 9px;
+  padding-left: 15px;
   width: 664px;
-  height: 124px;
+  height: 90px;
   background-color: #f9fafb;
   margin-bottom: 30px;
   border: 1px solid #dedee0;
@@ -67,29 +68,28 @@ export const ImgDiv = styled.div`
 `;
 export const InputAddImg = styled.input`
   opacity: 0;
-    position: absolute;
-    z-index: -1;
-    overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  overflow: hidden;
 `;
 
 export const Wrapped = styled.div`
-   width: 92px;
-  height: 92px;
+  width: 70px;
+  height: 70px;
   background-color: #e4e4e4;
   position: relative;
   border-radius: 10px;
-
-`
+`;
 export const Upload = styled(LogoUpload)`
-position: absolute;
-  fill:#349a89;
+  position: absolute;
+  fill: #349a89;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 42px;
   height: 42px;
   background-color: transparent;
-`
+`;
 
 // export const KidOfTur = styled.div`
 //     width: 664px;
@@ -100,8 +100,16 @@ position: absolute;
 //   margin-bottom: 24px;
 // `
 
+export const WrapperTour = styled.div`
+  display: flex;
+`;
 export const Tour = styled.label`
-:not(:last-child){
-  margin-right: 10px;
-}
-`
+  :not(:last-child) {
+    margin-right: 35px;
+    margin-bottom: 20px;
+  }
+`;
+
+export const CheckBox = styled(Field)`
+  margin-left: 5px;
+`;

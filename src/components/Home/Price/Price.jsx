@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { Input } from './Price.styled';
 import { setMaxPrice, setMinPrice } from 'redux/filtersSlice';
-import { clearFilter } from 'redux/filtersSlice';
 
 export const Price = () => {
   const dispatch = useDispatch();
@@ -17,13 +16,13 @@ export const Price = () => {
   return (
     <>
       <form action="#" id="price-form">
-        <input
+        <Input
           name="min"
           onChange={e => handleSubmit(e)}
           type="number"
           placeholder="Price from (USD)"
         />
-        <input
+        <Input
           name="max "
           onChange={e => handleSubmit(e)}
           type="number"

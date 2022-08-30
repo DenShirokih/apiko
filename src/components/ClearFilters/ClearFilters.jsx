@@ -6,20 +6,13 @@ export const ClearFilters = () => {
   const dispatch = useDispatch();
   return (
     <>
-      {/* <Button
-        type="reset"
-        form="form-price"
-        onClick={() => dispatch(clearFilter())}
-      >
-        Clear filters
-      </Button> */}
-      <button
+      <Button
         form="price-form"
         type="reset"
         onClick={() => dispatch(clearFilter())}
       >
-        clear filters
-      </button>
+        Clear filters
+      </Button>
     </>
   );
 };

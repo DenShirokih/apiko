@@ -16,11 +16,22 @@ import {
   InputAddImg,
   Upload,
   Wrapped,
-  Tour
+  Tour,
+  WrapperTour,
+  CheckBox,
+  Label,
 } from './AddProduct.styled';
+import * as yup from 'yup';
 import { useState } from 'react';
 import React from 'react';
 import { toast, ToastContainer } from 'react-toastify';
+
+const schema = yup.object().shape({
+  title: yup.string().required(),
+  location: yup.string().required(),
+  description: yup.string(),
+  price: yup.number().required(),
+});
 
 const values = {
   title: '',
@@ -35,8 +46,10 @@ export const AddProduct = () => {
   const [file, setFile] = useState(null);
   const storage = getStorage();
   const handleSubmit = async (value, { resetForm }) => {
-
-console.log(value.checked)
+    if (!value.checked) {
+      toast.warning('Please, choose at lets one category');
+      return;
+    }
     const db = getDatabase();
     const postListRef = ref(db, 'posts');
     const newPostRef = push(postListRef);
@@ -94,7 +107,7 @@ console.log(value.checked)
             <Input type="text" name="location"></Input>
           </div>
           <div>
-            <Title>descriTitletion</Title>
+            <Title>description</Title>
             <TextArea type="text" name="description"></TextArea>
           </div>
           <div>
@@ -115,24 +128,42 @@ console.log(value.checked)
             </ImgDiv>
           </div>
           <div id="checkbox-group">
-          <div  role="group" aria-labelledby="checkbox-group">
-            <Tour>
-              Family vacation
-              <Field type="checkbox" name="checked" value="Family vacation"/>
-            </Tour>
-            <Tour >
-              Last minute tours
-              <Field type="checkbox" name="checked" value="Last minute tours"/>
-            </Tour>
-            <Tour >
-                Beach tours
-              <Field type="checkbox" name="checked" value="Beach tours"/>
-            </Tour>
-            <Tour >
-                Adventure tour
-              <Field type="checkbox" name="checked" value="Adventure tour"/>
-            </Tour>
-          </div>
+            <div role="group" aria-labelledby="checkbox-group">
+              <WrapperTour>
+                <Tour>
+                  Family vacation
+                  <CheckBox
+                    type="checkbox"
+                    name="checked"
+                    value="Family vacation"
+                  />
+                </Tour>
+                <Tour>
+                  Last minute tours
+                  <CheckBox
+                    type="checkbox"
+                    name="checked"
+                    value="Last minute tours"
+                  />
+                </Tour>
+                <Tour>
+                  Beach tours
+                  <CheckBox
+                    type="checkbox"
+                    name="checked"
+                    value="Beach tours"
+                  />
+                </Tour>
+                <Tour>
+                  Adventure tour
+                  <CheckBox
+                    type="checkbox"
+                    name="checked"
+                    value="Adventure tour"
+                  />
+                </Tour>
+              </WrapperTour>
+            </div>
           </div>
           <div>
             <Title>price</Title>
