@@ -4,7 +4,7 @@ const initialState = {
   title: '',
   location: '',
   maxPrice: '',
-  minPrice: "0",
+  minPrice: 0,
   kindOfTuor: '',
 };
 export const filterSlice = createSlice({

@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { Formik, Form } from 'formik';
 import { Input } from './Price.styled';
 import { setMaxPrice, setMinPrice } from 'redux/filtersSlice';
+import { clearFilter } from 'redux/filtersSlice';
 
 export const Price = () => {
   const dispatch = useDispatch();
@@ -15,21 +15,21 @@ export const Price = () => {
   };
 
   return (
-    <Formik>
-      <Form>
-        <Input
+    <>
+      <form action="#" id="price-form">
+        <input
           name="min"
           onChange={e => handleSubmit(e)}
-          type="text"
+          type="number"
           placeholder="Price from (USD)"
         />
-        <Input
+        <input
           name="max "
           onChange={e => handleSubmit(e)}
-          type="text"
+          type="number"
           placeholder="Price to (USD)"
         />
-      </Form>
-    </Formik>
+      </form>
+    </>
   );
 };
