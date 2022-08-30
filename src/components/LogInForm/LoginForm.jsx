@@ -33,6 +33,8 @@ const values = {
 };
 
 export const LoginForm = () => {
+
+
   const [statePass, setStatePass] = useState(false);
   const toggleBtn = () => {
     setStatePass(prevState => !prevState);
@@ -40,6 +42,7 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
  
   const handleSubmit = ({ email, password }, { resetForm }) => {
+
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
