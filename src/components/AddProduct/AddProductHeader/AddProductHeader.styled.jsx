@@ -14,6 +14,9 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 1100px) {
+      padding: 0 15px;
+  }
 `;
 
 export const LinkItem = styled(Link)`

@@ -22,12 +22,21 @@ export const ItemWrapper = styled.li`
   margin-bottom: 13px;
   background-color: #ffffff;
   border-radius: 5px;
+  @media (max-width: 768px) {
+    flex-basis: 100%;
+    width: 200px;
+  }
+  @media (max-width: 1200px) {
+    flex-basis: 46%;
+    width: 250px;
+  }
 `;
 export const ImgItem = styled.img`
   height: 150px;
   min-width: 200px;
-  object-fit: fill;
+  object-fit: cover;
   border-radius: 5px 5px 0px 0px;
+  
 `;
 export const ImgWrapper = styled.div`
   text-align: center;

@@ -2,7 +2,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { authSelectors } from 'redux/authSelectors';
 import { useSelector } from 'react-redux';
 
-const RequireAuth = ({ children }) => {
+export const RequireAuth = ({ children }) => {
   const location = useLocation();
   const loggedIn = useSelector(authSelectors.getloggedIn);
 
@@ -13,4 +13,4 @@ const RequireAuth = ({ children }) => {
   return children;
 };
 
-export { RequireAuth };
+ 

@@ -3,15 +3,15 @@ import { Form, Field } from 'formik';
 import { ReactComponent as LogoUpload } from 'icons/plus-svgrepo-com.svg';
 
 export const Background = styled.div`
-  width: 1136px;
-  height: 874px;
+ max-width: 1136px;
   margin: 0 auto;
   background-color: #ffffff;
+  padding-bottom: 30px;
   box-shadow: 0px, 2px rgba(0, 0, 0, 0.1112);
 `;
 
 export const Input = styled(Field)`
-  width: 664px;
+  width: 100%;
   height: 58px;
   border: 1px solid #dedee0;
   background-color: #f9fafb;
@@ -23,6 +23,8 @@ export const Forma = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 80%;
+  margin: 0 auto;
 `;
 
 export const MainTitle = styled.h2`
@@ -33,7 +35,7 @@ export const MainTitle = styled.h2`
   padding-top: 24px;
 `;
 export const TextArea = styled(Field)`
-  width: 664px;
+  width: 100%;
   height: 183px;
   border: 1px solid #dedee0;
   background-color: #f9fafb;
@@ -48,7 +50,7 @@ export const Title = styled.p`
 `;
 
 export const Button = styled.button`
-  width: 664px;
+ width: 100%;
   height: 58px;
   background-color: #349a89;
   border: none;
@@ -59,7 +61,7 @@ export const Button = styled.button`
 export const ImgDiv = styled.div`
   padding: 9px;
   padding-left: 15px;
-  width: 664px;
+  width: 100%;
   height: 90px;
   background-color: #f9fafb;
   margin-bottom: 30px;
@@ -112,4 +114,14 @@ export const Tour = styled.label`
 
 export const CheckBox = styled(Field)`
   margin-left: 5px;
+  margin-right: 5px;
 `;
+
+export const PreviewImg = styled.img`
+  width: 100%;
+  height: 100%;
+`
+
+export const Container = styled.div`
+
+`

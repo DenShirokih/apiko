@@ -20,7 +20,6 @@ export const SelectLocation = () => {
       return { location: item.location, label: item.location };
     });
     const allItemsLocation = [{ location: '', label: 'Location' }, ...itemLocation];
-
     const country = {};
     const uniqueLocation = allItemsLocation.filter(
       ({ location }) => !country[location] && (country[location] = 1)

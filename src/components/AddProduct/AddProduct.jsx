@@ -1,4 +1,4 @@
-import { Field, Formik } from 'formik';
+import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
 import { getStorage, uploadBytes } from 'firebase/storage';
 import { ref as sRef } from 'firebase/storage';
@@ -19,12 +19,13 @@ import {
   Tour,
   WrapperTour,
   CheckBox,
-  Label,
+  PreviewImg,
+  Container,
 } from './AddProduct.styled';
 import * as yup from 'yup';
 import { useState } from 'react';
 import React from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const schema = yup.object().shape({
   title: yup.string().required(),
@@ -44,6 +45,7 @@ const values = {
 
 export const AddProduct = () => {
   const [file, setFile] = useState(null);
+  const [url, setUrl] = useState(null);
   const storage = getStorage();
   const handleSubmit = async (value, { resetForm }) => {
     if (!value.checked) {
@@ -77,6 +79,7 @@ export const AddProduct = () => {
         const updates = {};
         updates['/posts/' + newPostKey] = postData;
         update(ref(db), updates);
+        setUrl(null);
       })
       .catch(error => {
         // Handle any errors
@@ -88,34 +91,31 @@ export const AddProduct = () => {
   const changeHandler = e => {
     if (e.target.files.length > 0) {
       setFile(e.target.files[0]);
+      setUrl(URL.createObjectURL(e.target.files[0]));
     }
   };
 
   return (
     <Background>
-      <ToastContainer theme="colored" />
-      <Formik initialValues={values} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={values}
+        onSubmit={handleSubmit}
+        validationSchema={schema}
+      >
         <Forma>
           <MainTitle>Add product</MainTitle>
-          <div>
+          <Container>
             <Title>titile</Title>
-
             <Input type="text" name="title"></Input>
-          </div>
-          <div>
             <Title>location</Title>
             <Input type="text" name="location"></Input>
-          </div>
-          <div>
             <Title>description</Title>
             <TextArea type="text" name="description"></TextArea>
-          </div>
-          <div>
             <Title>photos</Title>
             <ImgDiv>
               <label htmlFor="upload-file">
                 <Wrapped>
-                  <Upload />
+                  {url ? <PreviewImg src={url} alt="" /> : <Upload />}
                 </Wrapped>
               </label>
               <InputAddImg
@@ -126,50 +126,51 @@ export const AddProduct = () => {
                 onChange={e => changeHandler(e)}
               />
             </ImgDiv>
-          </div>
-          <div id="checkbox-group">
-            <div role="group" aria-labelledby="checkbox-group">
-              <WrapperTour>
-                <Tour>
-                  Family vacation
-                  <CheckBox
-                    type="checkbox"
-                    name="checked"
-                    value="Family vacation"
-                  />
-                </Tour>
-                <Tour>
-                  Last minute tours
-                  <CheckBox
-                    type="checkbox"
-                    name="checked"
-                    value="Last minute tours"
-                  />
-                </Tour>
-                <Tour>
-                  Beach tours
-                  <CheckBox
-                    type="checkbox"
-                    name="checked"
-                    value="Beach tours"
-                  />
-                </Tour>
-                <Tour>
-                  Adventure tour
-                  <CheckBox
-                    type="checkbox"
-                    name="checked"
-                    value="Adventure tour"
-                  />
-                </Tour>
-              </WrapperTour>
+
+            <div id="checkbox-group">
+              <div role="group" aria-labelledby="checkbox-group">
+                <WrapperTour>
+                  <Tour>
+                    <CheckBox
+                      type="checkbox"
+                      name="checked"
+                      value="Family vacation"
+                    />
+                    <p>Family vacation</p>
+                  </Tour>
+                  <Tour>
+                    <CheckBox
+                      type="checkbox"
+                      name="checked"
+                      value="Last minute tours"
+                    />
+                   <p> Last minute tours</p>  
+                  </Tour>
+                  <Tour>
+                    <CheckBox
+                      type="checkbox"
+                      name="checked"
+                      value="Beach tours"
+                    />
+                   <p> Beach tours</p>
+                  </Tour>
+                  <Tour>
+                    <CheckBox
+                      type="checkbox"
+                      name="checked"
+                      value="Adventure tour"
+                    />
+                    <p>Adventure tour</p>
+                  </Tour>
+                </WrapperTour>
+              </div>
             </div>
-          </div>
-          <div>
-            <Title>price</Title>
-            <Input type="number" name="price"></Input>
-          </div>
-          <Button type="submit">submit</Button>
+            <div>
+              <Title>price</Title>
+              <Input type="number" name="price"></Input>
+            </div>
+            <Button type="submit">submit</Button>
+          </Container>
         </Forma>
       </Formik>
     </Background>
