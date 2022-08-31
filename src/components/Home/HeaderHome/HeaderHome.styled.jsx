@@ -18,6 +18,10 @@ export const Container = styled.div`
   padding: 30px;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 768px) {
+    padding: 15px;
+    max-width: 600px;
+  }
 `;
 
 export const LinkItem = styled(Link)`
@@ -40,6 +44,7 @@ export const ApicoLogo = styled(Logo)`
 export const ContainerFilter = styled.div`
   max-width: 855px;
   margin: 0 auto;
+ 
 `;
 export const Favorites = styled(FavoritesLogo)`
   width: 20px;

@@ -22,13 +22,13 @@ export const ItemWrapper = styled.li`
   margin-bottom: 13px;
   background-color: #ffffff;
   border-radius: 5px;
-  @media (max-width: 768px) {
-    flex-basis: 100%;
-    width: 200px;
-  }
   @media (max-width: 1200px) {
     flex-basis: 46%;
-    width: 250px;
+    width: 220px;
+  }
+  @media (max-width: 768px) {
+    flex-basis: 100%;
+    width: 270px;
   }
 `;
 export const ImgItem = styled.img`

@@ -4,6 +4,7 @@ import {
   Background,
   GridLogo,
   SelectElement,
+  WrapperCategory
 } from './Category.styled';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -66,14 +67,17 @@ export const Category = () => {
   return (
     <Container>
       <Background>
-        <GridLogo />
-        <SelectElement
+        
+       <WrapperCategory>
+       <GridLogo />
+       <SelectElement
           classNamePrefix="react-select"
           styles={customStyles}
           options={filterLocationByItems()}
           onChange={e => findSelectCategory(e)}
           placeholder="Choose Category"
         />
+       </WrapperCategory>
         <Price />
         {property && <ClearFilters />}
       </Background>
