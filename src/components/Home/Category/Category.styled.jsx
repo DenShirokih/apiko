@@ -13,24 +13,28 @@ export const GridLogo = styled(Grid)`
   height: 17px;
   position: absolute;
   z-index: 500;
-  left: 20px;
+  left: 10px;
+  top: 10px;
 `
 
 
 export const Background = styled.div`
+  padding: 15px 11px;
   background-color: #ffffff;
-  height: 59px;
   display: flex;
   align-items: center;
   border: 1px solid #dedee0;
   border-radius: 10px;
   box-shadow: 0px, 1px rgba(0, 0, 0, 0.2171);
-  padding-left: 11px;
   margin-bottom: 15px;
-  position: relative;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
-
+export const WrapperCategory = styled.div`
+    position: relative;
+`
 
 export const SelectElement = styled(Select)`
   .react-select-container {
@@ -44,6 +48,10 @@ export const SelectElement = styled(Select)`
     height: 35px;
     margin-right: 23px;
     padding-left: 30px;
+    @media (max-width: 768px) {
+      width: 100%;
+      margin-bottom: 10px;
+    }
     
   }
 

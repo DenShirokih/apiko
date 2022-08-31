@@ -6,6 +6,7 @@ import {
   InputWrapper,
   SearchLogo,
   LocationLoge,
+  SvgContainer
 } from './Filter.styled';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
@@ -32,10 +33,13 @@ export const Filter = () => {
           <Input
             type="text"
             name="search"
-            placeholder="Search products by name"
+            placeholder="Search products by name..."
           />
-          <LocationLoge />
-          <SelectLocation />
+          <SvgContainer>
+            <LocationLoge />
+            <SelectLocation />
+          </SvgContainer>
+         
           <Button type="submit">Search</Button>
         </InputWrapper>
       </Forma>

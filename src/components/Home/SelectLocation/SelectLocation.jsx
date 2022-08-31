@@ -4,11 +4,21 @@ import { itemsSelectors } from 'redux/itemsSelectors';
 import { setLocation } from 'redux/filtersSlice';
 import { SelectElement } from './SelectLocation.styled';
 
+
+
 const customStyles = {
   option: (state) => ({
     color: state.isSelected && 'white',
     padding: 10,
     }),
+    container: styles => ({ ...styles,  
+      width: 170,
+      "@media only screen and (max-width: 768px)": {
+        ...styles["@media only screen and (max-width: 768px)"],
+        width: "100%",
+    },
+    }),
+    
 }
 
 export const SelectLocation = () => {

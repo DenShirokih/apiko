@@ -9,10 +9,12 @@ export const SelectElement = styled(Select)`
   .react-select__control {
     // custom styles
     font-size: 18px;
-    width: 200px;
     height: 48px;
-    margin-right: 7px;
     padding-left: 25px;
+    @media (max-width: 768px ) {
+      height: 15px;
+      text-align: center;
+    }
   }
 
   .react-select__indicators {
