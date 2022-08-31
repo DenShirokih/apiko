@@ -26,7 +26,6 @@ export const LinkItem = styled(Link)`
   text-transform: uppercase;
   text-decoration: none;
   padding: 8px 35px;
-  
 `;
 
 export const Button = styled.button`

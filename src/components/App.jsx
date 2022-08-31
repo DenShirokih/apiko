@@ -51,7 +51,7 @@ export const App = () => {
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-      <ToastContainer />
+      <ToastContainer  theme="colored"/>
     </>
   );
 };
