@@ -9,11 +9,21 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FavoritesView } from 'view/FavoritesView';
 import { RequireAuth } from 'hoc/RequireAuth';
 import { PublicRoute } from 'hoc/PublicRoute';
+import Burger from './Burger/Burger';
+import Menu from './Menu/Menu';
+import { useState } from 'react';
+
+
 
 export const App = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <>
+     <Burger open={open} setOpen={setOpen}/>
+        <Menu  open={open} setOpen={setOpen}/>
       <Routes>
+       
         <Route path="/" element={<Layout />}>
           <Route index element={<HomeView />} />
           <Route

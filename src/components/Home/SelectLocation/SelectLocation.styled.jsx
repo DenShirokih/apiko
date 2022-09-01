@@ -25,5 +25,7 @@ export const SelectElement = styled(Select)`
     color: black;
     font-size: 16px;
   }
-
+  .react-select__menu{
+    z-index: 600;
+  }
 `;
