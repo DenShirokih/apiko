@@ -24,12 +24,23 @@ export const Container = styled.div`
   }
 `;
 
+export const LoginDiv = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`
+
+
+
 export const LinkItem = styled(Link)`
   font-size: 12px;
   color: #ffffff;
   text-transform: uppercase;
   text-decoration: none;
   padding: 8px 35px;
+  @media (max-width:768px) {
+    /* display: none; */
+  }
 `;
 
 export const Button = styled.button`

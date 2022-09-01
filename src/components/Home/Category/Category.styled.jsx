@@ -12,11 +12,10 @@ export const GridLogo = styled(Grid)`
   width: 17px;
   height: 17px;
   position: absolute;
-  z-index: 500;
+  z-index: 100;
   left: 10px;
   top: 10px;
 `
-
 
 export const Background = styled.div`
   padding: 15px 11px;
