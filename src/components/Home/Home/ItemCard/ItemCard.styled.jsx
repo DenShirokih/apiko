@@ -28,15 +28,17 @@ export const ItemWrapper = styled.li`
   }
   @media (max-width: 768px) {
     flex-basis: 100%;
-    width: 270px;
+    width: 350px;
   }
 `;
 export const ImgItem = styled.img`
   height: 150px;
-  min-width: 200px;
+  width: 100%;
   object-fit: cover;
   border-radius: 5px 5px 0px 0px;
-  
+  @media (max-width: 768px) {
+    height: 200px;
+  }
 `;
 export const ImgWrapper = styled.div`
   text-align: center;

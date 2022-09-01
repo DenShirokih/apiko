@@ -14,21 +14,19 @@ export const Price = () => {
   };
 
   return (
-    <>
-      <form action="#" id="price-form">
-        <Input
-          name="min"
-          onChange={e => handleSubmit(e)}
-          type="number"
-          placeholder="Price from (USD)"
-        />
-        <Input
-          name="max "
-          onChange={e => handleSubmit(e)}
-          type="number"
-          placeholder="Price to (USD)"
-        />
-      </form>
-    </>
+    <form action="#" id="price-form">
+      <Input
+        name="min"
+        onChange={e => handleSubmit(e)}
+        type="number"
+        placeholder="Price from (USD)"
+      />
+      <Input
+        name="max "
+        onChange={e => handleSubmit(e)}
+        type="number"
+        placeholder="Price to (USD)"
+      />
+    </form>
   );
 };

@@ -10,13 +10,22 @@ const Menu = ({ open, setOpen }) => {
     <StyledMenu open={open}>
       {isLoggedIn && open ? (
         <>
+          <Link to="/favorites" onClick={() => setOpen()}>
+            Favorites
+          </Link>
+          <Link to="/add" onClick={() => setOpen()}>
+            Add
+          </Link>
           <LogOutButton />
-          <Link to="/favorites">Favorites</Link>
         </>
       ) : (
         <>
-          <Link to="/login" onClick={ ()=>setOpen()}>Login</Link>
-          <Link to="/register" onClick={ ()=>setOpen()}>Register</Link>
+          <Link to="/login" onClick={() => setOpen()}>
+            Login
+          </Link>
+          <Link to="/register" onClick={() => setOpen()}>
+            Register
+          </Link>
         </>
       )}
     </StyledMenu>

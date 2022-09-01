@@ -18,7 +18,7 @@ import { useMediaQuery } from 'hooks/useMediaQuery';
 
 export const HeaderHome = () => {
   const logged = useSelector(authSelectors.getloggedIn);
-  let isPageWide = useMediaQuery('(min-width: 768px)')
+  let isPageWide = useMediaQuery('(min-width: 769px)');
 
   return (
     <Header>
@@ -27,16 +27,18 @@ export const HeaderHome = () => {
           <ApicoLogo />
         </LinkItem>
         <LinkDiv>
-          {logged ? (isPageWide &&
-            <>
-              <Add>
-                <LinkItem to="/add">+ ADD</LinkItem>
-              </Add>
-              <LinkItem to="/favorites">
-                <Favorites />
-              </LinkItem>
-              <LogOutButton />
-            </>
+          {logged ? (
+            isPageWide && (
+              <>
+                <Add>
+                  <LinkItem to="/add">+ ADD</LinkItem>
+                </Add>
+                <LinkItem to="/favorites">
+                  <Favorites />
+                </LinkItem>
+                <LogOutButton />
+              </>
+            )
           ) : (
             <LoginDiv>
               <LinkItem to="/login">login</LinkItem>
@@ -48,5 +50,5 @@ export const HeaderHome = () => {
         <Filter />
       </ContainerFilter>
     </Header>
- );
+  );
 };
