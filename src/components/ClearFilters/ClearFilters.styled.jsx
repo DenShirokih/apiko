@@ -9,4 +9,8 @@ export const Button = styled.button`
   color: #505050;
   font-size: 14px;
   cursor: pointer;
+  @media (max-width: 768px) {
+    margin-top: 10px;
+    margin-left: 0;
+  }
 `;
