@@ -1,5 +1,14 @@
 import { Formik, Field, Form } from 'formik';
-import { ImgDiv } from './PersonalSetting.styled';
+import {
+  ImgDiv,
+  WrapperImg,
+  WrapperForm,
+  Container,
+  Input,
+  Title,
+  H1,
+  BtnForm,
+} from './PersonalSetting.styled';
 import { getAuth } from 'firebase/auth';
 import { updateProfile, updateEmail } from 'firebase/auth';
 import { toast } from 'react-toastify';
@@ -58,9 +67,10 @@ export const PersonalSetting = () => {
   };
 
   const changeHandler = e => {
-    if (e.target.files.length > 0) {
+    if (e.current.target.files.length > 0) {
       setUrl(URL.createObjectURL(e.target.files[0]));
       setFile(e.target.files[0]);
+      console.log('srabativaem naxyi');
     }
   };
 
@@ -72,18 +82,32 @@ export const PersonalSetting = () => {
         onSubmit={handleSubmit}
       >
         <Form>
-          <label htmlFor="upload-file">
-            {url ? <img src={url} alt="" /> : <ImgDiv />}
-          </label>
-          <input type="file" name="file" onChange={e => changeHandler(e)} />
-          <button type="button">Update photo</button>
-          <p>FullName</p>
-          <Field type="text" name="fullName" />
-          <p>Phone number</p>
-          <Field type="text" name="phoneNumber" />
-          <p>Email</p>
-          <Field type="email" name="email" />
-          <button type="submit">update profile</button>
+          <Container>
+            <WrapperImg>
+              {/* <label htmlFor="upload-file"> */}
+              {url ? <img src={url} alt="" /> : <ImgDiv />}
+              <input type="file" name="file" onChange={e => changeHandler(e)} />
+              {/* </label> */}
+            </WrapperImg>
+            <WrapperForm>
+              <H1>Update Profile</H1>
+              <Title>FullName</Title>
+              <Input
+                type="text"
+                name="fullName"
+                placeholder="type your full name"
+              />
+              <Title>Phone number</Title>
+              <Input
+                type="text"
+                name="phoneNumber"
+                placeholder="type your phone number"
+              />
+              <Title>Email</Title>
+              <Input type="email" name="email" placeholder="email" />
+              <BtnForm type="submit">Update profile</BtnForm>
+            </WrapperForm>
+          </Container>
         </Form>
       </Formik>
     </>
