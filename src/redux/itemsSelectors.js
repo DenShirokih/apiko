@@ -8,7 +8,6 @@ const getFiltredProducts = state =>
       title.toLowerCase().includes(filter.title) &&
       location.includes(filter.location) &&
       !kindOfTuor.includes(filter.kindOfTuor)
-      // filter.kindOfTuor ? kindOfTuor.includes(filter.kindOfTuor) : true
 
     return  filter.maxPrice 
       ? filtedItems &&

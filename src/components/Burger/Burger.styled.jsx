@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const StyledBurger = styled.button`
-display: none;
+  display: none;
   position: absolute;
   top: 33px;
   right: 3rem;
