@@ -20,7 +20,8 @@ import {
   WrapperTour,
   CheckBox,
   PreviewImg,
-  Container,
+  CloseIcon,
+  ButtonToReset
 } from './AddProduct.styled';
 import * as yup from 'yup';
 import { useState } from 'react';
@@ -95,6 +96,11 @@ export const AddProduct = () => {
     }
   };
 
+  const resetUrl = (e) => {
+    setUrl('')
+  }
+
+
   return (
     <Background>
       <Formik
@@ -104,7 +110,7 @@ export const AddProduct = () => {
       >
         <Forma>
           <MainTitle>Add product</MainTitle>
-          <Container>
+          <div>
             <Title>titile</Title>
             <Input type="text" name="title"></Input>
             <Title>location</Title>
@@ -115,7 +121,14 @@ export const AddProduct = () => {
             <ImgDiv>
               <label htmlFor="upload-file">
                 <Wrapped>
-                  {url ? <PreviewImg src={url} alt="" /> : <Upload />}
+                  {url ? (
+                    <>
+                  <PreviewImg src={url} alt="" />
+                  <ButtonToReset type='button' onClick={(e)=>  resetUrl(e)}>
+                    <CloseIcon/>
+                  </ButtonToReset>
+                  </>
+                  ) : <Upload />}
                 </Wrapped>
               </label>
               <InputAddImg
@@ -170,7 +183,7 @@ export const AddProduct = () => {
               <Input type="number" name="price"></Input>
             </div>
             <Button type="submit">submit</Button>
-          </Container>
+          </div>
         </Forma>
       </Formik>
     </Background>

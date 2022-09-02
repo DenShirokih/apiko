@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import { authSelectors } from 'redux/authSelectors';
 import React from 'react';
 import { useMediaQuery } from 'hooks/useMediaQuery';
+import { UserStatus } from 'components/UserStatus/UserStatus';
 
 export const HeaderHome = () => {
   const logged = useSelector(authSelectors.getloggedIn);
@@ -33,10 +34,10 @@ export const HeaderHome = () => {
                 <Add>
                   <LinkItem to="/add">+ ADD</LinkItem>
                 </Add>
-                <LinkItem to="/personal">Personal</LinkItem>
                 <LinkItem to="/favorites">
                   <Favorites />
                 </LinkItem>
+                <UserStatus/>
                 <LogOutButton />
               </>
             )

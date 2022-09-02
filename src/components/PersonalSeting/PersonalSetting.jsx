@@ -17,6 +17,9 @@ import { useState } from 'react';
 import { ref as sRef } from 'firebase/storage';
 import { getStorage, uploadBytes } from 'firebase/storage';
 import { getDownloadURL } from 'firebase/storage';
+import { useDispatch } from 'react-redux';
+import { setUser } from 'redux/authSlice';
+
 
 const schema = yup.object().shape({
   fullName: yup.string().required(),
@@ -25,18 +28,19 @@ const schema = yup.object().shape({
 });
 
 export const PersonalSetting = () => {
+  const dispatch = useDispatch()
   const auth = getAuth();
   const user = auth.currentUser;
   const id = user.uid;
+  const photoUrl = user.photoURL;
+  const [url, setUrl] = useState(photoUrl);
+  const [file, setFile] = useState('');
+
   const initialValues = {
     fullName: user.displayName,
     phoneNumber: user.phoneNumber || '',
     email: user.email,
   };
-
-  const photoUrl = user.photoURL;
-  const [url, setUrl] = useState(photoUrl);
-  const [file, setFile] = useState('');
 
   const handleSubmit = async ({ fullName, phoneNumber, email }) => {
     await updateEmail(user, email)
@@ -51,7 +55,7 @@ export const PersonalSetting = () => {
       })
       .catch(error => console.log(error));
 
-    await getDownloadURL(sRef(storage, `images/${file.name}`))
+    await getDownloadURL(sRef(storage, `picturesOfUsers/${file.name}`))
       .then(url => {
         updateProfile(user, {
           displayName: fullName,
@@ -60,19 +64,27 @@ export const PersonalSetting = () => {
       })
       .then(() => {
         toast.success('УРААААААААА');
+        dispatch(setUser({
+        user: {name: fullName, email: email},
+        id: id
+      }))
       })
       .catch(error => {
         console.log(error);
       });
+
   };
 
   const changeHandler = e => {
-    if (e.current.target.files.length > 0) {
+    if (e.target.files.length > 0) {
       setUrl(URL.createObjectURL(e.target.files[0]));
       setFile(e.target.files[0]);
-      console.log('srabativaem naxyi');
     }
   };
+
+  const resetUrl = () =>{
+    photoUrl ?  setUrl(photoUrl):  setUrl('')
+  }
 
   return (
     <>
@@ -84,28 +96,29 @@ export const PersonalSetting = () => {
         <Form>
           <Container>
             <WrapperImg>
-              {/* <label htmlFor="upload-file"> */}
               {url ? <img src={url} alt="" /> : <ImgDiv />}
-              <input type="file" name="file" onChange={e => changeHandler(e)} />
-              {/* </label> */}
+              <Field type="file" name="file" onChange={e => changeHandler(e)} />
+              <button type='button' onClick={()=> resetUrl()}>reset</button>
             </WrapperImg>
             <WrapperForm>
-              <H1>Update Profile</H1>
+              <H1>Update profile</H1>
+              <div>
               <Title>FullName</Title>
               <Input
                 type="text"
                 name="fullName"
-                placeholder="type your full name"
+                placeholder="Full name..."
               />
               <Title>Phone number</Title>
               <Input
                 type="text"
                 name="phoneNumber"
-                placeholder="type your phone number"
+                placeholder="Phone number..."
               />
               <Title>Email</Title>
-              <Input type="email" name="email" placeholder="email" />
+              <Input type="email" name="email" placeholder="Email..." />
               <BtnForm type="submit">Update profile</BtnForm>
+              </div>
             </WrapperForm>
           </Container>
         </Form>
