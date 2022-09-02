@@ -30,7 +30,7 @@ export const authSlice = createSlice({
     },
     clearFavorites(state){
       state.favorites = []
-    }
+    },
   },
 });
 

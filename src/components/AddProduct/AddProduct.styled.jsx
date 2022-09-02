@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import { Form, Field } from 'formik';
 import { ReactComponent as LogoUpload } from 'icons/plus-svgrepo-com.svg';
+import { ReactComponent as CloseLogo } from 'icons/close.svg';
+
 
 export const Background = styled.div`
  max-width: 1136px;
@@ -36,7 +38,7 @@ export const MainTitle = styled.h2`
 `;
 export const TextArea = styled(Field)`
   width: 100%;
-  height: 183px;
+  height: 160px;
   border: 1px solid #dedee0;
   background-color: #f9fafb;
   border-radius: 10px;
@@ -62,7 +64,7 @@ export const ImgDiv = styled.div`
   padding: 9px;
   padding-left: 15px;
   width: 100%;
-  height: 90px;
+  height: 110px;
   background-color: #f9fafb;
   margin-bottom: 30px;
   border: 1px solid #dedee0;
@@ -76,8 +78,8 @@ export const InputAddImg = styled.input`
 `;
 
 export const Wrapped = styled.div`
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: 90px;
   background-color: #e4e4e4;
   position: relative;
   border-radius: 10px;
@@ -93,14 +95,6 @@ export const Upload = styled(LogoUpload)`
   background-color: transparent;
 `;
 
-// export const KidOfTur = styled.div`
-//     width: 664px;
-//   height: 58px;
-//   border: 1px solid #dedee0;
-//   background-color: #f9fafb;
-//   border-radius: 10px;
-//   margin-bottom: 24px;
-// `
 
 export const WrapperTour = styled.div`
   display: flex;
@@ -120,8 +114,22 @@ export const CheckBox = styled(Field)`
 export const PreviewImg = styled.img`
   width: 100%;
   height: 100%;
+  position: relative;
 `
 
-export const Container = styled.div`
+export const CloseIcon = styled(CloseLogo)`
+  width: 25px;
+  height: 25px;
 
+`
+export const ButtonToReset = styled.button`
+position: absolute;
+  background-color: #e4e4e4;
+  border: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  cursor: pointer;
 `

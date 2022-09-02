@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import profileImg from '../../components/PersonalSeting/profileTemplate.png';
+import profileImg from 'icons/profileTemplate.png';
 import { Field } from 'formik';
 
 export const ImgDiv = styled.div`
@@ -8,7 +8,7 @@ export const ImgDiv = styled.div`
   background-image: url(${profileImg});
   background-repeat: repeat;
 `;
-export const Container = styled.label`
+export const Container = styled.div`
   display: flex;
   width: 855px;
   margin: auto;
@@ -21,6 +21,7 @@ export const WrapperImg = styled.div`
 `;
 
 export const WrapperForm = styled.div`
+  padding: 0 25px;
   width: 50%;
   background-color: #ffffff;
   border-radius: 5px;
@@ -29,11 +30,13 @@ export const WrapperForm = styled.div`
   align-items: center;
 `;
 export const Input = styled(Field)`
-  width: 377px;
+  width: 100%;
   height: 58px;
   border-radius: 5px;
   border: 1px solid #dedee0;
   background-color: #f2f2f2;
+  padding-left: 15px;
+  font-size: 16px;
 `;
 export const Title = styled.p`
   font-size: 15px;
@@ -43,7 +46,7 @@ export const Title = styled.p`
 `;
 export const H1 = styled.h1`
   font-family: 'Helvetica';
-  font-size: 22px;
+  font-size: 20px;
   line-height: 25px;
   color: #282828;
   margin-top: 10px;

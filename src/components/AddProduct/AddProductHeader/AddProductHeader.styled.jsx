@@ -57,3 +57,10 @@ export const UserMenu = styled.div`
   display: flex;
   align-items: center;
 `;
+
+export const ImgUrl = styled.img`
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 35px;
+`
