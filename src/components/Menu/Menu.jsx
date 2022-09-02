@@ -8,7 +8,7 @@ const Menu = ({ open, setOpen }) => {
   const isLoggedIn = useSelector(authSelectors.getloggedIn);
   return (
     <StyledMenu open={open}>
-      {isLoggedIn && open ? (
+      {isLoggedIn  ? (
         <>
           <Link to="/favorites" onClick={() => setOpen()}>
             Favorites

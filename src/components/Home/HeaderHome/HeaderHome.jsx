@@ -33,6 +33,7 @@ export const HeaderHome = () => {
                 <Add>
                   <LinkItem to="/add">+ ADD</LinkItem>
                 </Add>
+                <LinkItem to="/personal">Personal</LinkItem>
                 <LinkItem to="/favorites">
                   <Favorites />
                 </LinkItem>

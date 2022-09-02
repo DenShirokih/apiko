@@ -12,6 +12,7 @@ import { PublicRoute } from 'hoc/PublicRoute';
 import Burger from './Burger/Burger';
 import Menu from './Menu/Menu';
 import { useState } from 'react';
+import { PersonalView } from 'view/PersonalView';
 
 
 
@@ -55,6 +56,14 @@ export const App = () => {
             element={
               <RequireAuth>
                 <FavoritesView />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="personal"
+            element={
+              <RequireAuth>
+                <PersonalView />
               </RequireAuth>
             }
           />
