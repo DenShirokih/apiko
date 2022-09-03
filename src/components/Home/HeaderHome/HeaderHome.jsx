@@ -16,6 +16,8 @@ import { authSelectors } from 'redux/authSelectors';
 import React from 'react';
 import { useMediaQuery } from 'hooks/useMediaQuery';
 import { UserStatus } from 'components/UserStatus/UserStatus';
+import { FormattedMessage } from 'react-intl'
+import { SelectLanguage } from 'components/SelectLanguage/SelectLanguage';
 
 export const HeaderHome = () => {
   const logged = useSelector(authSelectors.getloggedIn);
@@ -27,6 +29,7 @@ export const HeaderHome = () => {
         <LinkItem to="/">
           <ApicoLogo />
         </LinkItem>
+        <SelectLanguage/>
         <LinkDiv>
           {logged ? (
             isPageWide && (
@@ -43,7 +46,10 @@ export const HeaderHome = () => {
             )
           ) : (
             <LoginDiv>
-              <LinkItem to="/login">login</LinkItem>
+
+              <LinkItem to="/login">
+                <FormattedMessage id='login'/>
+                </LinkItem>
             </LoginDiv>
           )}
         </LinkDiv>
