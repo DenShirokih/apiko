@@ -1,7 +1,6 @@
-import { Formik, Field, Form } from 'formik';
+import { Formik, Form } from 'formik';
 import {
   ImgDiv,
-  Wrapper,
   WrapperImg,
   WrapperForm,
   Container,
@@ -14,6 +13,8 @@ import {
   ChooseBtn,
   BtnReset,
   IMG,
+  ContentDiv,
+  ButtonDiv,
 } from './PersonalSetting.styled';
 import { getAuth } from 'firebase/auth';
 import { updateProfile, updateEmail } from 'firebase/auth';
@@ -25,6 +26,7 @@ import { getStorage, uploadBytes } from 'firebase/storage';
 import { getDownloadURL } from 'firebase/storage';
 import { useDispatch } from 'react-redux';
 import { setUser } from 'redux/authSlice';
+import profileImg from 'icons/avatarProfile.png';
 
 const schema = yup.object().shape({
   fullName: yup.string().required(),
@@ -99,12 +101,12 @@ export const PersonalSetting = () => {
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        <Wrapper>
-          <Form>
-            <Container>
-              <WrapperImg>
-                {url ? <IMG src={url} alt="" /> : <ImgDiv />}
-                <Label class="input-file">
+        <Form>
+          <Container>
+            <WrapperImg>
+              {url ? <IMG src={url} alt="" /> : <ImgDiv src={profileImg} />}
+              <ButtonDiv>
+                <Label>
                   <ChooseBtn
                     type="file"
                     name="file"
@@ -115,30 +117,26 @@ export const PersonalSetting = () => {
                 <BtnReset type="button" onClick={() => resetUrl()}>
                   Reset
                 </BtnReset>
-              </WrapperImg>
-              <WrapperForm>
-                <H1>Update profile</H1>
-                <div>
-                  <Title>FullName</Title>
-                  <Input
-                    type="text"
-                    name="fullName"
-                    placeholder="Full name..."
-                  />
-                  <Title>Phone number</Title>
-                  <Input
-                    type="text"
-                    name="phoneNumber"
-                    placeholder="Phone number..."
-                  />
-                  <Title>Email</Title>
-                  <Input type="email" name="email" placeholder="Email..." />
-                  <BtnForm type="submit">Update profile</BtnForm>
-                </div>
-              </WrapperForm>
-            </Container>
-          </Form>
-        </Wrapper>
+              </ButtonDiv>
+            </WrapperImg>
+            <WrapperForm>
+              <H1>Update profile</H1>
+              <ContentDiv>
+                <Title>FullName</Title>
+                <Input type="text" name="fullName" placeholder="Full name..." />
+                <Title>Phone number</Title>
+                <Input
+                  type="text"
+                  name="phoneNumber"
+                  placeholder="Phone number..."
+                />
+                <Title>Email</Title>
+                <Input type="email" name="email" placeholder="Email..." />
+                <BtnForm type="submit">Update profile</BtnForm>
+              </ContentDiv>
+            </WrapperForm>
+          </Container>
+        </Form>
       </Formik>
     </>
   );

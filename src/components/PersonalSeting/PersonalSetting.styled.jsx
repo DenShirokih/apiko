@@ -1,40 +1,47 @@
 import styled from '@emotion/styled';
 // import profileImg from 'icons/profileTemplate.png';
-import profileImg from 'icons/avatarProfile.png';
+
 import { Field } from 'formik';
 
-export const ImgDiv = styled.div`
-  width: 343px;
-  height: 342px;
-  background-image: url(${profileImg});
-  background-size: contain;
-  /* background-repeat: no-repeat; */
+export const ImgDiv = styled.img`
+  width: 100%;
   border-radius: 50%;
 `;
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+
 export const Container = styled.div`
   display: flex;
-  width: 855px;
+  max-width: 855px;
   margin: auto;
-  flex-grow: 1;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
 `;
 
 export const WrapperImg = styled.div`
   width: 40%;
-  margin-right: 5%;
+  margin-right: 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @media (max-width: 768px) {
+    margin-bottom: 15px;
+    margin: 0;
+  }
 `;
 
 export const WrapperForm = styled.div`
-  padding: 0 25px;
+  padding: 0 3%;
   width: 50%;
   background-color: #ffffff;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+export const ContentDiv = styled.div`
+  width: 90%;
 `;
 export const Input = styled(Field)`
   width: 100%;
@@ -63,13 +70,16 @@ export const BtnForm = styled.button`
   background: #22a69b;
   border-radius: 5px;
   border: solid transparent;
-  width: 377px;
+  width: 100%;
   height: 58px;
   font-size: 15px;
   margin-top: 25px;
   margin-bottom: 20px;
   cursor: pointer;
   color: #ffffff;
+  :hover {
+    background-color: #59be6e;
+  }
 `;
 
 export const Label = styled.label`
@@ -143,9 +153,9 @@ export const BtnReset = styled.button`
 `;
 
 export const IMG = styled.img`
+  width: 100%;
   border-radius: 50%;
-  width: 343px;
-  height: 342px;
-  background-size: contain;
-  /* background-repeat: no-repeat; */
+`;
+export const ButtonDiv = styled.div`
+  width: 100%;
 `;

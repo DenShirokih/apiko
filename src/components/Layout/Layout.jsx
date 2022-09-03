@@ -4,9 +4,11 @@ import { Overflow } from './Layout.styled';
 
 export const Layout = () => {
   return (
-    <Overflow>
-      <Outlet/>
+    <div className="position">
+      <div>
+        <Outlet />
+      </div>
       <Footer />
-      </Overflow>
+    </div>
   );
 };
