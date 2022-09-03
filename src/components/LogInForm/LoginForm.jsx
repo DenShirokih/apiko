@@ -21,6 +21,7 @@ import {
 import { IoEyeOutline, IoEyeOff } from 'react-icons/io5';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FormattedMessage } from 'react-intl'
 
 const schema = yup.object().shape({
   email: yup.string().required(),
@@ -71,13 +72,17 @@ export const LoginForm = () => {
       <Container>
         <ContainerForm>
           <TitleDiv>
-            <Title>Login</Title>
+            <Title>
+            <FormattedMessage id='login' />
+            </Title>
           </TitleDiv>
           <Container>
             <ContainerForm>
               <FormStyled autoComplete="off">
                 <label htmlFor="email">
-                  <DescriptionTitle>email</DescriptionTitle>
+                  <DescriptionTitle>
+                  <FormattedMessage id='email' />
+                  </DescriptionTitle>
                   <Input type="email" name="email" placeholder="Email..." />
                 </label>
                 <label htmlFor="password">
