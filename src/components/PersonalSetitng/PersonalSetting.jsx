@@ -9,7 +9,6 @@ import {
   H1,
   BtnForm,
   Label,
-  Span,
   ChooseBtn,
   BtnReset,
   IMG,
@@ -104,7 +103,7 @@ export const PersonalSetting = () => {
         <Form>
           <Container>
             <WrapperImg>
-              {url ? <IMG src={url} alt="" /> : <ImgDiv src={profileImg} />}
+                {url ? <IMG src={url} alt="" /> : <ImgDiv src={profileImg} />}
               <ButtonDiv>
                 <Label>
                   <ChooseBtn
@@ -112,7 +111,7 @@ export const PersonalSetting = () => {
                     name="file"
                     onChange={e => changeHandler(e)}
                   />
-                  <Span>Select photo</Span>
+                  <p>Select photo</p>
                 </Label>
                 <BtnReset type="button" onClick={() => resetUrl()}>
                   Reset

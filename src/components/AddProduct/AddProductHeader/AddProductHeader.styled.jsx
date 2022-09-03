@@ -8,7 +8,7 @@ export const Header = styled.header`
 `;
 
 export const Container = styled.div`
-  height: 77px;
+  height: 90px;
   max-width: 1096px;
   margin: 0 auto;
   display: flex;
@@ -27,6 +27,7 @@ export const LinkItem = styled(Link)`
   :not(:last-child) {
     margin-right: 75px;
   }
+
 `;
 
 export const Button = styled.button`

@@ -1,6 +1,4 @@
 import styled from '@emotion/styled';
-// import profileImg from 'icons/profileTemplate.png';
-
 import { Field } from 'formik';
 
 export const ImgDiv = styled.img`
@@ -12,34 +10,41 @@ export const Container = styled.div`
   display: flex;
   max-width: 855px;
   margin: auto;
+  justify-content: space-between;
+  padding: 0 40px;
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
-    margin: auto;
+    align-items: center;
+    padding: 0;
   }
 `;
 
 export const WrapperImg = styled.div`
-  width: 40%;
-  margin-right: 3%;
+  flex-basis: 45%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   @media (max-width: 768px) {
-    margin-bottom: 15px;
-    margin: 0;
+    margin-bottom: 25px;
+    width: 70%;
   }
 `;
 
 export const WrapperForm = styled.div`
-  padding: 0 3%;
-  width: 50%;
+  flex-basis: 50%;
   background-color: #ffffff;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 768px) {
+    width: 70%;
+  }
 `;
+
+
 export const ContentDiv = styled.div`
   width: 90%;
 `;
@@ -83,36 +88,20 @@ export const BtnForm = styled.button`
 `;
 
 export const Label = styled.label`
-  position: relative;
-  display: inline-block;
-`;
-export const Span = styled.span`
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  outline: none;
-  text-decoration: none;
-  font-size: 14px;
-  vertical-align: middle;
+ background-color: #22a69b;
+ padding: 10px 20px;
+ font-size: 14px;
   color: rgb(255 255 255);
-  text-align: center;
   border-radius: 4px;
-  background-color: #22a69b;
-  line-height: 22px;
-  height: 40px;
-  padding: 10px 20px;
-  box-sizing: border-box;
   border: none;
-  margin-left: 40px;
-  margin-top: 10px;
-  transition: background-color 0.2s;
   :active {
     background-color: #59be6e;
   }
   :hover {
     background-color: #59be6e;
-  }
+  } 
 `;
+
 export const ChooseBtn = styled.input`
   position: absolute;
   z-index: -1;
@@ -125,24 +114,16 @@ export const ChooseBtn = styled.input`
   }
 `;
 export const BtnReset = styled.button`
-  position: relative;
-  display: inline-block;
+  
   cursor: pointer;
-  outline: none;
   text-decoration: none;
   font-size: 14px;
-  vertical-align: middle;
   color: rgb(255 255 255);
-  text-align: center;
   border-radius: 4px;
   background-color: #22a69b;
-  line-height: 22px;
-  height: 40px;
   padding: 10px 40px;
   box-sizing: border-box;
   border: none;
-  margin-left: 30px;
-  margin-top: 10px;
   transition: background-color 0.2s;
   :active {
     background-color: #59be6e;
@@ -155,7 +136,18 @@ export const BtnReset = styled.button`
 export const IMG = styled.img`
   width: 100%;
   border-radius: 50%;
+  height: 320px;
+  margin-bottom: 15px;
+  @media (max-width: 768px) {
+    height: 250px;
+    width: 260px;
+  }
+
 `;
 export const ButtonDiv = styled.div`
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
 `;
