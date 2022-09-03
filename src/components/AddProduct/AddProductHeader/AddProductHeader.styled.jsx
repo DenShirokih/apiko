@@ -15,7 +15,7 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   @media (max-width: 1100px) {
-      padding: 0 15px;
+    padding: 0 15px;
   }
 `;
 
@@ -52,6 +52,7 @@ export const UserName = styled.div`
   justify-content: center;
   align-items: center;
   text-transform: capitalize;
+  list-style: none;
 `;
 export const UserMenu = styled.div`
   display: flex;
@@ -63,4 +64,4 @@ export const ImgUrl = styled.img`
   width: 40px;
   border-radius: 50%;
   margin-right: 35px;
-`
+`;
