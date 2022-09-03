@@ -35,3 +35,9 @@ export const StyledMenu = styled.nav`
     }
   }
 `;
+
+export const PositionUserStatus = styled.div`
+  position: absolute;
+  top: 30px;
+  left: 45px;
+`

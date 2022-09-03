@@ -10,9 +10,11 @@ import { useSelector } from 'react-redux';
 import { authSelectors } from 'redux/authSelectors';
 import { LogOutButton } from 'components/LogOutButton/LogOutButton';
 import { UserStatus } from 'components/UserStatus/UserStatus';
+import { useMediaQuery } from 'hooks/useMediaQuery';
 
 
 export const AddProductHeader = () => {
+  let isPageWide = useMediaQuery('(min-width: 769px)');
   const loggedIn = useSelector(authSelectors.getloggedIn);
   return (
     <>
@@ -22,9 +24,11 @@ export const AddProductHeader = () => {
             <ApicoLogo />
           </LinkItem>
           <UserMenu>
-           <UserStatus/>
-            {loggedIn ? (
+            {}
+            {loggedIn ? (isPageWide && <>
+              <UserStatus/>
               <LogOutButton />
+            </> 
             ) : (
               <LinkItem to="/login">login</LinkItem>
             )}
