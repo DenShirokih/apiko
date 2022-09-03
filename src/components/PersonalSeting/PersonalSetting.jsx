@@ -1,6 +1,7 @@
 import { Formik, Field, Form } from 'formik';
 import {
   ImgDiv,
+  Wrapper,
   WrapperImg,
   WrapperForm,
   Container,
@@ -8,6 +9,11 @@ import {
   Title,
   H1,
   BtnForm,
+  Label,
+  Span,
+  ChooseBtn,
+  BtnReset,
+  IMG,
 } from './PersonalSetting.styled';
 import { getAuth } from 'firebase/auth';
 import { updateProfile, updateEmail } from 'firebase/auth';
@@ -20,7 +26,6 @@ import { getDownloadURL } from 'firebase/storage';
 import { useDispatch } from 'react-redux';
 import { setUser } from 'redux/authSlice';
 
-
 const schema = yup.object().shape({
   fullName: yup.string().required(),
   email: yup.string().required(),
@@ -28,7 +33,7 @@ const schema = yup.object().shape({
 });
 
 export const PersonalSetting = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const auth = getAuth();
   const user = auth.currentUser;
   const id = user.uid;
@@ -64,15 +69,16 @@ export const PersonalSetting = () => {
       })
       .then(() => {
         toast.success('УРААААААААА');
-        dispatch(setUser({
-        user: {name: fullName, email: email},
-        id: id
-      }))
+        dispatch(
+          setUser({
+            user: { name: fullName, email: email },
+            id: id,
+          })
+        );
       })
       .catch(error => {
         console.log(error);
       });
-
   };
 
   const changeHandler = e => {
@@ -82,9 +88,9 @@ export const PersonalSetting = () => {
     }
   };
 
-  const resetUrl = () =>{
-    photoUrl ?  setUrl(photoUrl):  setUrl('')
-  }
+  const resetUrl = () => {
+    photoUrl ? setUrl(photoUrl) : setUrl('');
+  };
 
   return (
     <>
@@ -93,35 +99,46 @@ export const PersonalSetting = () => {
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <Container>
-            <WrapperImg>
-              {url ? <img src={url} alt="" /> : <ImgDiv />}
-              <Field type="file" name="file" onChange={e => changeHandler(e)} />
-              <button type='button' onClick={()=> resetUrl()}>reset</button>
-            </WrapperImg>
-            <WrapperForm>
-              <H1>Update profile</H1>
-              <div>
-              <Title>FullName</Title>
-              <Input
-                type="text"
-                name="fullName"
-                placeholder="Full name..."
-              />
-              <Title>Phone number</Title>
-              <Input
-                type="text"
-                name="phoneNumber"
-                placeholder="Phone number..."
-              />
-              <Title>Email</Title>
-              <Input type="email" name="email" placeholder="Email..." />
-              <BtnForm type="submit">Update profile</BtnForm>
-              </div>
-            </WrapperForm>
-          </Container>
-        </Form>
+        <Wrapper>
+          <Form>
+            <Container>
+              <WrapperImg>
+                {url ? <IMG src={url} alt="" /> : <ImgDiv />}
+                <Label class="input-file">
+                  <ChooseBtn
+                    type="file"
+                    name="file"
+                    onChange={e => changeHandler(e)}
+                  />
+                  <Span>Select photo</Span>
+                </Label>
+                <BtnReset type="button" onClick={() => resetUrl()}>
+                  Reset
+                </BtnReset>
+              </WrapperImg>
+              <WrapperForm>
+                <H1>Update profile</H1>
+                <div>
+                  <Title>FullName</Title>
+                  <Input
+                    type="text"
+                    name="fullName"
+                    placeholder="Full name..."
+                  />
+                  <Title>Phone number</Title>
+                  <Input
+                    type="text"
+                    name="phoneNumber"
+                    placeholder="Phone number..."
+                  />
+                  <Title>Email</Title>
+                  <Input type="email" name="email" placeholder="Email..." />
+                  <BtnForm type="submit">Update profile</BtnForm>
+                </div>
+              </WrapperForm>
+            </Container>
+          </Form>
+        </Wrapper>
       </Formik>
     </>
   );
