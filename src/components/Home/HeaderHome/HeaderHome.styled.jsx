@@ -67,7 +67,6 @@ export const LinkDiv = styled.div`
 `
 
 export const Add = styled.div`
-  width: 130px;
   height: 30px;
   color: #ffffff;
   background-color: #349A89;

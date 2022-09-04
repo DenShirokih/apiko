@@ -5,6 +5,8 @@ import { LogOutButton } from 'components/LogOutButton/LogOutButton';
 import { Link } from 'react-router-dom';
 import { UserStatus } from 'components/UserStatus/UserStatus';
 import {  PositionUserStatus } from './Menu.styled';
+import { FormattedMessage } from 'react-intl'
+
 
 const Menu = ({ open, setOpen }) => {
   const isLoggedIn = useSelector(authSelectors.getloggedIn);
@@ -16,20 +18,20 @@ const Menu = ({ open, setOpen }) => {
             <UserStatus />
           </PositionUserStatus>
           <Link to="/favorites" onClick={() => setOpen()}>
-            Favorites
+            <FormattedMessage id='favorites'/>
           </Link>
           <Link to="/add" onClick={() => setOpen()}>
-            Add
+          <FormattedMessage id='add'/>
           </Link>
           <LogOutButton />
         </>
       ) : (
         <>
           <Link to="/login" onClick={() => setOpen()}>
-            Login
+          <FormattedMessage id='login'/>
           </Link>
           <Link to="/register" onClick={() => setOpen()}>
-            Register
+          <FormattedMessage id='Register'/>
           </Link>
         </>
       )}

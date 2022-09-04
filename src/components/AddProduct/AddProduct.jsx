@@ -27,6 +27,8 @@ import * as yup from 'yup';
 import { useState } from 'react';
 import React from 'react';
 import { toast } from 'react-toastify';
+import { FormattedMessage } from 'react-intl'
+
 
 const schema = yup.object().shape({
   title: yup.string().required(),
@@ -50,7 +52,7 @@ export const AddProduct = () => {
   const storage = getStorage();
   const handleSubmit = async (value, { resetForm }) => {
     if (!value.checked) {
-      toast.warning('Please, choose at lets one category');
+      toast.warning(<FormattedMessage id='warningChoseCategory'/>);
       return;
     }
     const db = getDatabase();
@@ -60,8 +62,7 @@ export const AddProduct = () => {
 
     const storageRef = sRef(storage, `images/${file.name}`);
     await uploadBytes(storageRef, file).then(() => {
-      toast.success('Your product have been added');
-      console.log('Uploaded a blob or file!');
+      toast.success(<FormattedMessage id='infoSuccses'/>);
     });
     getDownloadURL(sRef(storage, `images/${file.name}`))
       .then(url => {
@@ -108,15 +109,24 @@ export const AddProduct = () => {
         validationSchema={schema}
       >
         <Forma>
-          <MainTitle>Add product</MainTitle>
+          <MainTitle>
+            <FormattedMessage id='addProduct'/>
+          </MainTitle>
           <div>
-            <Title>titile</Title>
+            <Title>
+              <FormattedMessage id="title"/>
+            </Title>
             <Input type="text" name="title"></Input>
-            <Title>location</Title>
+            <Title>
+            <FormattedMessage id="location"/>
+            </Title>
             <Input type="text" name="location"></Input>
-            <Title>description</Title>
+            <Title>
+            <FormattedMessage id="description"/></Title>
             <TextArea type="text" name="description"></TextArea>
-            <Title>photos</Title>
+            <Title>
+            <FormattedMessage id="photos"/>
+            </Title>
             <ImgDiv>
               <label htmlFor="upload-file">
                 <Wrapped>
@@ -150,7 +160,9 @@ export const AddProduct = () => {
                       name="checked"
                       value="Family vacation"
                     />
-                    <p>Family vacation</p>
+                    <p>
+                      <FormattedMessage id='familyVacation'/>
+                    </p>
                   </Tour>
                   <Tour>
                     <CheckBox
@@ -158,7 +170,9 @@ export const AddProduct = () => {
                       name="checked"
                       value="Last minute tours"
                     />
-                    <p> Last minute tours</p>
+                    <p>
+                    <FormattedMessage id='lastMinuteTours'/>
+                      </p>
                   </Tour>
                   <Tour>
                     <CheckBox
@@ -166,7 +180,9 @@ export const AddProduct = () => {
                       name="checked"
                       value="Beach tours"
                     />
-                    <p> Beach tours</p>
+                    <p> 
+                    <FormattedMessage id='beachTours'/>
+                     </p>
                   </Tour>
                   <Tour>
                     <CheckBox
@@ -174,16 +190,22 @@ export const AddProduct = () => {
                       name="checked"
                       value="Adventure tour"
                     />
-                    <p>Adventure tour</p>
+                    <p>
+                    <FormattedMessage id='adventureTour'/>
+                      </p>
                   </Tour>
                 </WrapperTour>
               </div>
             </div>
             <div>
-              <Title>price</Title>
+              <Title>
+              <FormattedMessage id='price'/>
+              </Title>
               <Input type="number" name="price"></Input>
             </div>
-            <Button type="submit">submit</Button>
+            <Button type="submit">
+            <FormattedMessage id='submit'/>
+            </Button>
           </div>
         </Forma>
       </Formik>

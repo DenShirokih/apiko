@@ -33,7 +33,7 @@ export const Forma = styled(Form)`
 export const Input = styled(Field)`
   height: 50px;
   flex-basis: 56%;
-  font-size: 18px;
+  font-size: 16px;
   padding-left: 45px;
   border-radius: 5px;
   @media (max-width: 768px) {

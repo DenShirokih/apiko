@@ -8,7 +8,7 @@ export const SelectElement = styled(Select)`
 
   .react-select__control {
     // custom styles
-    font-size: 18px;
+    font-size: 16px;
     height: 48px;
     padding-left: 25px;
     @media (max-width: 768px ) {

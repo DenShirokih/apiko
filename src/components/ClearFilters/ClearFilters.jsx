@@ -1,6 +1,8 @@
 import { clearFilter } from 'redux/filtersSlice';
 import { useDispatch } from 'react-redux';
 import { Button } from './ClearFilters.styled';
+import { FormattedMessage } from 'react-intl'
+
 
 export const ClearFilters = () => {
   const dispatch = useDispatch();
@@ -11,7 +13,7 @@ export const ClearFilters = () => {
         type="reset"
         onClick={() => dispatch(clearFilter())}
       >
-        Clear filters
+        <FormattedMessage id='clearFilters'/>
       </Button>
     </>
   );
