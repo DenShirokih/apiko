@@ -3,9 +3,8 @@ import { Form, Field } from 'formik';
 import { ReactComponent as LogoUpload } from 'icons/plus-svgrepo-com.svg';
 import { ReactComponent as CloseLogo } from 'icons/close.svg';
 
-
 export const Background = styled.div`
- max-width: 1136px;
+  max-width: 1136px;
   margin: 0 auto;
   background-color: #ffffff;
   padding-bottom: 30px;
@@ -52,7 +51,7 @@ export const Title = styled.p`
 `;
 
 export const Button = styled.button`
- width: 100%;
+  width: 100%;
   height: 58px;
   background-color: #349a89;
   border: none;
@@ -73,7 +72,6 @@ export const ImgDiv = styled.div`
 export const InputAddImg = styled.input`
   opacity: 0;
   position: absolute;
-  z-index: -1;
   overflow: hidden;
 `;
 
@@ -95,7 +93,6 @@ export const Upload = styled(LogoUpload)`
   background-color: transparent;
 `;
 
-
 export const WrapperTour = styled.div`
   display: flex;
 `;
@@ -115,15 +112,14 @@ export const PreviewImg = styled.img`
   width: 100%;
   height: 100%;
   position: relative;
-`
+`;
 
 export const CloseIcon = styled(CloseLogo)`
   width: 25px;
   height: 25px;
-
-`
+`;
 export const ButtonToReset = styled.button`
-position: absolute;
+  position: absolute;
   background-color: #e4e4e4;
   border: none;
   width: 25px;
@@ -132,4 +128,4 @@ position: absolute;
   top: 3px;
   left: 3px;
   cursor: pointer;
-`
+`;

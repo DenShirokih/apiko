@@ -21,7 +21,7 @@ import {
   CheckBox,
   PreviewImg,
   CloseIcon,
-  ButtonToReset
+  ButtonToReset,
 } from './AddProduct.styled';
 import * as yup from 'yup';
 import { useState } from 'react';
@@ -96,10 +96,9 @@ export const AddProduct = () => {
     }
   };
 
-  const resetUrl = (e) => {
-    setUrl('')
-  }
-
+  const resetUrl = e => {
+    setUrl('');
+  };
 
   return (
     <Background>
@@ -123,12 +122,14 @@ export const AddProduct = () => {
                 <Wrapped>
                   {url ? (
                     <>
-                  <PreviewImg src={url} alt="" />
-                  <ButtonToReset type='button' onClick={(e)=>  resetUrl(e)}>
-                    <CloseIcon/>
-                  </ButtonToReset>
-                  </>
-                  ) : <Upload />}
+                      <PreviewImg src={url} alt="" />
+                      <ButtonToReset type="button" onClick={e => resetUrl(e)}>
+                        <CloseIcon />
+                      </ButtonToReset>
+                    </>
+                  ) : (
+                    <Upload />
+                  )}
                 </Wrapped>
               </label>
               <InputAddImg
@@ -157,7 +158,7 @@ export const AddProduct = () => {
                       name="checked"
                       value="Last minute tours"
                     />
-                   <p> Last minute tours</p>  
+                    <p> Last minute tours</p>
                   </Tour>
                   <Tour>
                     <CheckBox
@@ -165,7 +166,7 @@ export const AddProduct = () => {
                       name="checked"
                       value="Beach tours"
                     />
-                   <p> Beach tours</p>
+                    <p> Beach tours</p>
                   </Tour>
                   <Tour>
                     <CheckBox
