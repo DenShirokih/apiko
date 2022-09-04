@@ -18,10 +18,11 @@ import { useMediaQuery } from 'hooks/useMediaQuery';
 import { UserStatus } from 'components/UserStatus/UserStatus';
 import { FormattedMessage } from 'react-intl'
 import { SelectLanguage } from 'components/SelectLanguage/SelectLanguage';
+import { BurgerMenu } from 'components/BurgerMenu/BurgerMenu';
 
 export const HeaderHome = () => {
   const logged = useSelector(authSelectors.getloggedIn);
-  let isPageWide = useMediaQuery('(min-width: 769px)');
+  let isPageWide = useMediaQuery('(max-width: 768px)');
 
   return (
     <Header>
@@ -32,7 +33,7 @@ export const HeaderHome = () => {
       
         <LinkDiv>
           {logged ? (
-            isPageWide && (
+            !isPageWide ? (
               <>
                 <Add>
                   <LinkItem to="/add">
@@ -40,16 +41,22 @@ export const HeaderHome = () => {
                   </LinkItem>
                 </Add>
                 <SelectLanguage/>
+               
                 <LinkItem to="/favorites">
                   <Favorites />
                 </LinkItem>
                 <UserStatus/>
                 <LogOutButton />
               </>
-            )
+            ) :  (<>
+             <SelectLanguage/> 
+             <BurgerMenu/>
+            </>
+           )
           ) : (
            <>
             <SelectLanguage/>
+            <BurgerMenu/>
             <LoginDiv>
               <LinkItem to="/login">
                 <FormattedMessage id='login'/>
@@ -57,6 +64,7 @@ export const HeaderHome = () => {
             </LoginDiv></>
           )}
         </LinkDiv>
+        
       </Container>
       <ContainerFilter>
         <Filter />

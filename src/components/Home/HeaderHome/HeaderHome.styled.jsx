@@ -30,8 +30,6 @@ export const LoginDiv = styled.div`
   }
 `
 
-
-
 export const LinkItem = styled(Link)`
   font-size: 12px;
   color: #ffffff;
@@ -40,6 +38,7 @@ export const LinkItem = styled(Link)`
   padding: 8px 35px;
   @media (max-width:768px) {
     /* display: none; */
+    padding: 8px 0;
   }
 `;
 
