@@ -2,9 +2,9 @@ import styled from "@emotion/styled";
 
 export const StyledBurger = styled.button`
   display: none;
-  position: absolute;
+  /* position: absolute;
   top: 33px;
-  right: 3rem;
+  right: 3rem; */
   flex-direction: column;
   justify-content: space-around;
   width: 2rem;
@@ -13,7 +13,7 @@ export const StyledBurger = styled.button`
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 10000;
+  z-index: 3000;
   @media (max-width: 768px) {
     display: flex;
   }
