@@ -7,19 +7,20 @@ export const SelectLanguage = () => {
     const handleChange = useContext(HandleChangeContext)
 
   const languages = [
-    { name: 'English', code: LOCALES.ENGLISH },
-    { name: 'Українська', code: LOCALES.UKRANIAN },
+    { name: 'En', code: LOCALES.ENGLISH },
+    { name: 'Ua', code: LOCALES.UKRANIAN },
   ];
 
   return (
     <>
       <div>
-        Languages
         <select onChange={handleChange} value={currentLocale}>
           {languages.map(({ name, code }) => (
+          <>
             <option key={code} value={code}>
-              {name}
+             {name}
             </option>
+            </>
           ))}
         </select>
       </div>

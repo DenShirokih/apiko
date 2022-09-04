@@ -21,7 +21,8 @@ import {
 import { IoEyeOutline, IoEyeOff } from 'react-icons/io5';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
+
 
 const schema = yup.object().shape({
   email: yup.string().required(),
@@ -34,6 +35,7 @@ const values = {
 };
 
 export const LoginForm = () => {
+  const intl = useIntl()
   const [statePass, setStatePass] = useState(false);
   const toggleBtn = () => {
     setStatePass(prevState => !prevState);
@@ -53,7 +55,7 @@ export const LoginForm = () => {
           })
         );
         dispatch(setAuthToken(userAut.accessToken));
-        toast.success(`Welcome ${name}`);
+        toast.success(<FormattedMessage id='welcome'/>);
         resetForm();
       })
       .catch(error => {
@@ -83,30 +85,36 @@ export const LoginForm = () => {
                   <DescriptionTitle>
                   <FormattedMessage id='email' />
                   </DescriptionTitle>
-                  <Input type="email" name="email" placeholder="Email..." />
+                  <Input type="email" name="email" placeholder={intl.formatMessage({id: "email"})} />
                 </label>
                 <label htmlFor="password">
-                  <DescriptionTitle>password</DescriptionTitle>
+                  <DescriptionTitle>
+                  <FormattedMessage id='Password' />
+                  </DescriptionTitle>
                   <Wrapper>
                     <Input
                       type={statePass ? 'text' : 'password'}
                       name="password"
-                      placeholder="Password..."
+                      placeholder={intl.formatMessage({id: "Password"})} 
                     />
                     <BtnEye type="button" onClick={toggleBtn}>
                       {statePass ? <IoEyeOff /> : <IoEyeOutline />}
                     </BtnEye>
                   </Wrapper>
                 </label>
-                <Button type="submit">Continue</Button>
+                <Button type="submit">
+                <FormattedMessage id='Contine' />
+                </Button>
               </FormStyled>
             </ContainerForm>
           </Container>
         </ContainerForm>
         <Register>
           <p>
-            I have no account,
-            <LinkRegister to="/register">register now</LinkRegister>
+          <FormattedMessage id='NoAccount' />
+            <LinkRegister to="/register">
+            <FormattedMessage id='RegisterNow' />
+            </LinkRegister>
           </p>
         </Register>
       </Container>

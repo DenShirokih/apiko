@@ -11,6 +11,7 @@ import { authSelectors } from 'redux/authSelectors';
 import { LogOutButton } from 'components/LogOutButton/LogOutButton';
 import { UserStatus } from 'components/UserStatus/UserStatus';
 import { useMediaQuery } from 'hooks/useMediaQuery';
+import { FormattedMessage } from 'react-intl'
 
 
 export const AddProductHeader = () => {
@@ -30,7 +31,7 @@ export const AddProductHeader = () => {
               <LogOutButton />
             </> 
             ) : (
-              <LinkItem to="/login">login</LinkItem>
+              <LinkItem to="/login"><FormattedMessage id='login'/></LinkItem>
             )}
           </UserMenu>
         </Container>

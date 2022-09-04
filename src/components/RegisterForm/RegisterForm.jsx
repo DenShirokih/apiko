@@ -21,15 +21,17 @@ import {
 } from './RegisterForm.styled';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { FormattedMessage, useIntl } from 'react-intl'
+
 
 const schema = yup.object().shape({
   name: yup
     .string()
     .required()
-    .matches(/^\s*[\S]+(\s[\S]+)+\s*$/gms, 'Please enter your full name.')
+    .matches(/^\s*[\S]+(\s[\S]+)+\s*$/gms, <FormattedMessage id='inputFullName'/>)
     .matches(
       /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
-      'Name can only contain Latin letters.'
+      <FormattedMessage id='warningName'/>
     ),
   email: yup.string().required(),
   password: yup.string().required(),
@@ -45,6 +47,7 @@ const values = {
 };
 
 export const RegisterForm = () => {
+  const intl = useIntl()
   const [statePass, setStatePass] = useState(false);
   const [statePassConfig, setStatePassConfig] = useState(false);
 
@@ -63,14 +66,14 @@ export const RegisterForm = () => {
     { resetForm }
   ) => {
     if (password !== configPassword) {
-      toast.error(`Password does not match!!!`);
+      toast.error(<FormattedMessage id='wrongPassword'/>);
       return;
     }
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         updateProfile(userCredential.user, { displayName: name });
-        toast.success(`Welcome, ${name}`);
+        toast.success(<FormattedMessage id='welcome'/>);
         dispatch(
           setUser({
             user: { email: email, name: name },
@@ -96,24 +99,32 @@ export const RegisterForm = () => {
       <Container>
         <ContainerForm>
           <TitleDiv>
-            <Title>Register</Title>
+            <Title>
+            <FormattedMessage id='Register'/>
+            </Title>
           </TitleDiv>
           <FormStyled autoComplete="off">
             <label htmlFor="email">
-              <DescriptionTitle>email</DescriptionTitle>
-              <Input type="email" name="email" placeholder="Email..." />
+              <DescriptionTitle>
+              <FormattedMessage id='email'/>
+              </DescriptionTitle>
+              <Input type="email" name="email" placeholder={intl.formatMessage({id: "email"})} />
             </label>
             <label htmlFor="name">
-              <DescriptionTitle>full name</DescriptionTitle>
-              <Input type="text" name="name" placeholder="Full name..." />
+              <DescriptionTitle>
+              <FormattedMessage id='FullName'/>
+                </DescriptionTitle>
+              <Input type="text" name="name"  placeholder={intl.formatMessage({id: "FullName"})} />
             </label>
             <label htmlFor="password">
-              <DescriptionTitle>password</DescriptionTitle>
+              <DescriptionTitle>
+              <FormattedMessage id='Password'/>
+              </DescriptionTitle>
               <Wrapper>
                 <Input
                   type={statePass ? 'text' : 'password'}
                   name="password"
-                  placeholder="Password..."
+                  placeholder={intl.formatMessage({id: "Password"})}
                 />
                 <BtnEye onClick={toggleBtn} type="button">
                   {statePass ? <IoEyeOff /> : <IoEyeOutline />}
@@ -121,25 +132,31 @@ export const RegisterForm = () => {
               </Wrapper>
             </label>
             <label htmlFor="configPassword">
-              <DescriptionTitle>repeat password</DescriptionTitle>
+              <DescriptionTitle>
+              <FormattedMessage id='RepeatPassword'/>
+               </DescriptionTitle>
               <Wrapper>
                 <Input
                   type={statePassConfig ? 'text' : 'password'}
                   name="configPassword"
-                  placeholder="Config the password..."
+                  placeholder={intl.formatMessage({id: "RepeatPassword"})}
                 />
                 <BtnEye type="button" onClick={toggleBtnConfig}>
                   {statePassConfig ? <IoEyeOff /> : <IoEyeOutline />}
                 </BtnEye>
               </Wrapper>
             </label>
-            <Button type="submit">Register</Button>
+            <Button type="submit">
+            <FormattedMessage id='Register'/>
+            </Button>
           </FormStyled>
         </ContainerForm>
         <Register>
           <p>
-            I already have an account,
-            <LinkRegister to="/login"> log in</LinkRegister>
+          <FormattedMessage id='haveAccount'/>
+            <LinkRegister to="/login">
+            <FormattedMessage id='login'/>
+            </LinkRegister>
           </p>
         </Register>
       </Container>

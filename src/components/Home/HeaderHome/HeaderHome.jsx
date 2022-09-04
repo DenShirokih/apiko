@@ -29,14 +29,17 @@ export const HeaderHome = () => {
         <LinkItem to="/">
           <ApicoLogo />
         </LinkItem>
-        <SelectLanguage/>
+      
         <LinkDiv>
           {logged ? (
             isPageWide && (
               <>
                 <Add>
-                  <LinkItem to="/add">+ ADD</LinkItem>
+                  <LinkItem to="/add">
+                  <FormattedMessage id='Add'/>
+                  </LinkItem>
                 </Add>
+                <SelectLanguage/>
                 <LinkItem to="/favorites">
                   <Favorites />
                 </LinkItem>
@@ -45,12 +48,13 @@ export const HeaderHome = () => {
               </>
             )
           ) : (
+           <>
+            <SelectLanguage/>
             <LoginDiv>
-
               <LinkItem to="/login">
                 <FormattedMessage id='login'/>
                 </LinkItem>
-            </LoginDiv>
+            </LoginDiv></>
           )}
         </LinkDiv>
       </Container>

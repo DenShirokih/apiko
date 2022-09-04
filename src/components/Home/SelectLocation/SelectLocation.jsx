@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { itemsSelectors } from 'redux/itemsSelectors';
 import { setLocation } from 'redux/filtersSlice';
 import { SelectElement } from './SelectLocation.styled';
+import { useIntl } from 'react-intl';
 
 
 
@@ -22,6 +23,7 @@ const customStyles = {
 }
 
 export const SelectLocation = () => {
+  const intl = useIntl()
   const dispatch = useDispatch();
   const items = useSelector(itemsSelectors.getAllProducts);
 
@@ -29,7 +31,7 @@ export const SelectLocation = () => {
     const itemLocation = items.map(item => {
       return { location: item.location, label: item.location };
     });
-    const allItemsLocation = [{ location: '', label: 'Location' }, ...itemLocation];
+    const allItemsLocation = [{ location: '', label: intl.formatMessage({id: "LocationPH"}) }, ...itemLocation];
     const country = {};
     const uniqueLocation = allItemsLocation.filter(
       ({ location }) => !country[location] && (country[location] = 1)
@@ -47,6 +49,7 @@ export const SelectLocation = () => {
         options={filterLocationByItems()}
         onChange={e => findSelectedLocation(e)}
         styles={customStyles}
+        placeholder={intl.formatMessage({id: "LocationPH"})}
       />
     </>
   );

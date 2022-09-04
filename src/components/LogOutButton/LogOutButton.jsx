@@ -5,6 +5,8 @@ import { BtnOut } from './LogOutButton.styled';
 import { toast } from 'react-toastify';
 import { useLocation, Navigate } from 'react-router-dom';
 import { clearFavorites } from 'redux/authSlice';
+import { FormattedMessage } from 'react-intl'
+
 
 export const LogOutButton = () => {
   const dispatch = useDispatch();
@@ -16,7 +18,7 @@ export const LogOutButton = () => {
       .then(() => {
         dispatch(removeUser());
         dispatch(clearFavorites())
-        toast.success('See you soon');
+        toast.success(<FormattedMessage id='seeYouSoon'/>);
         <Navigate to="/" state={{ from: location }} />
       })
       .catch(error => {
@@ -25,5 +27,7 @@ export const LogOutButton = () => {
       });
   };
 
-  return <BtnOut onClick={() => handleLogOut()}>Log out</BtnOut>;
+  return <BtnOut onClick={() => handleLogOut()}>
+    <FormattedMessage id='logOut'/>
+  </BtnOut>;
 };

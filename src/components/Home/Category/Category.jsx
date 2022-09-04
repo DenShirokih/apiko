@@ -14,6 +14,7 @@ import { Price } from '../Price/Price';
 import { ClearFilters } from 'components/ClearFilters/ClearFilters';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useIntl } from 'react-intl';
 
 const customStyles = {
   option: state => ({
@@ -23,6 +24,7 @@ const customStyles = {
 };
 
 export const Category = () => {
+  const intl = useIntl()
   const filters = useSelector(store => store.filters);
   const [property, setProperty] = useState('')
 
@@ -49,7 +51,7 @@ export const Category = () => {
       });
 
     const allItemsCategory = [
-      { category: '', label: 'Choose category' },
+      { category: '', label: intl.formatMessage({id: "CategoryPH"}) },
       ...itemCategory,
     ];
 
@@ -75,7 +77,7 @@ export const Category = () => {
           styles={customStyles}
           options={filterLocationByItems()}
           onChange={e => findSelectCategory(e)}
-          placeholder="Choose Category"
+          placeholder={intl.formatMessage({id: "CategoryPH"})}
         />
        </WrapperCategory>
         <Price />

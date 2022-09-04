@@ -1,9 +1,11 @@
 import { useDispatch } from 'react-redux';
 import { Input } from './Price.styled';
 import { setMaxPrice, setMinPrice } from 'redux/filtersSlice';
+import { useIntl } from 'react-intl';
 
 export const Price = () => {
   const dispatch = useDispatch();
+  const intl = useIntl()
 
   const handleSubmit = e => {
     if (e.target.name === 'min') {
@@ -19,13 +21,13 @@ export const Price = () => {
         name="min"
         onChange={e => handleSubmit(e)}
         type="number"
-        placeholder="Price from (USD)"
+        placeholder={intl.formatMessage({ id: "PraceFromPH"})}
       />
       <Input
         name="max "
         onChange={e => handleSubmit(e)}
         type="number"
-        placeholder="Price to (USD)"
+        placeholder={intl.formatMessage({ id: "PraceToPH"})}
       />
     </form>
   );
