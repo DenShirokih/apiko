@@ -6,15 +6,14 @@ import {
   SelectElement,
   WrapperCategory
 } from './Category.styled';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { itemsSelectors } from 'redux/itemsSelectors';
 import { setKindOfTour } from 'redux/filtersSlice';
 import { Price } from '../Price/Price';
 import { ClearFilters } from 'components/ClearFilters/ClearFilters';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useIntl } from 'react-intl';
+// import cleareFilter from 'packeges/eventBus/events/cleareFilter';
 
 const customStyles = {
   option: state => ({
@@ -23,10 +22,17 @@ const customStyles = {
   }),
 };
 
+
+
 export const Category = () => {
   const intl = useIntl()
+  const defaultCategory = { category: '', label: intl.formatMessage({id: "CategoryPH"}) }
   const filters = useSelector(store => store.filters);
   const [property, setProperty] = useState('')
+  const items = useSelector(itemsSelectors.getAllProducts);
+  const dispatch = useDispatch();
+
+//==clear filters
 
  useEffect(()=>{
     const prov = Object.values(filters);
@@ -36,14 +42,10 @@ export const Category = () => {
       }
     }
     return setProperty(false);
-
  }, [filters])
 
  
-  const items = useSelector(itemsSelectors.getAllProducts);
-  const dispatch = useDispatch();
-
-  const filterLocationByItems = () => {
+  const filterLocationByItems = useMemo(() => {
     const itemCategory = items
       .flatMap(item => item.kindOfTuor)
       .map(tour => {
@@ -51,7 +53,7 @@ export const Category = () => {
       });
 
     const allItemsCategory = [
-      { category: '', label: intl.formatMessage({id: "CategoryPH"}) },
+      defaultCategory,
       ...itemCategory,
     ];
 
@@ -60,28 +62,42 @@ export const Category = () => {
       ({ category }) => !country[category] && (country[category] = 1)
     );
     return uniqueCategory;
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ items])
+
 
   const findSelectCategory = e => {
     dispatch(setKindOfTour(e.category));
   };
 
+
+  // const [value, setValue ] = useState(filterLocationByItems())
+  // useEffect(()=> {
+  //   cleareFilter.subscribe(()=>{
+  //     setValue(defaultCategory)
+  //   })
+
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [])
+
+
+
+
   return (
     <Container>
       <Background>
-        
        <WrapperCategory>
        <GridLogo />
        <SelectElement
           classNamePrefix="react-select"
           styles={customStyles}
-          options={filterLocationByItems()}
+          options={filterLocationByItems}
           onChange={e => findSelectCategory(e)}
           placeholder={intl.formatMessage({id: "CategoryPH"})}
         />
        </WrapperCategory>
         <Price />
-        {property && <ClearFilters />}
+        {property && <ClearFilters/>}
       </Background>
     </Container>
   );
