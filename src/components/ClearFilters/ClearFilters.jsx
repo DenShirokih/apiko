@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl'
 
 
 export const ClearFilters = () => {
+  
   const dispatch = useDispatch();
   return (
     <>
