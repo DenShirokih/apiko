@@ -14,15 +14,32 @@ import { PersonalView } from 'view/PersonalView';
 import { IntlProvider } from 'react-intl';
 import { LOCALES } from './i18n/locales';
 import { messages } from './i18n/messages';
+import { setLocale } from 'redux/localeSlice';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 export const LocationContext = createContext();
 export const HandleChangeContext = createContext();
 
 export const App = () => {
-  const [currentLocale, setCurrentLocale] = useState(LOCALES.ENGLISH);
+  const [currentLocale, setCurrentLocale] = useState(getInitialLocale());
+  const dispatch = useDispatch()
+ 
+  useEffect(()=>{
+    dispatch(setLocale(currentLocale))
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentLocale])
+
+
+function getInitialLocale() {
+  const savedLocale = localStorage.getItem('locale')
+  return savedLocale || LOCALES.ENGLISH
+}
+  
   const hangeChange = e => {
     setCurrentLocale(e.target.value);
+    localStorage.setItem('locale', e.target.value)    
   };
 
   return (
@@ -32,7 +49,6 @@ export const App = () => {
       defaultLocale={LOCALES.ENGLISH}
     >
       <HandleChangeContext.Provider value={hangeChange}>
-        <LocationContext.Provider value={currentLocale}>
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<HomeView />} />
@@ -80,7 +96,6 @@ export const App = () => {
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
           <ToastContainer theme="colored" />
-        </LocationContext.Provider>
       </HandleChangeContext.Provider>
     </IntlProvider>
   );
