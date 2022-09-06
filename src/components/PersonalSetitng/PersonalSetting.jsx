@@ -31,7 +31,6 @@ import { FormattedMessage, useIntl } from 'react-intl';
 const schema = yup.object().shape({
   fullName: yup.string().required(),
   email: yup.string().required(),
-  phoneNumber: yup.string().required(),
 });
 
 export const PersonalSetting = () => {
@@ -46,11 +45,10 @@ export const PersonalSetting = () => {
 
   const initialValues = {
     fullName: user.displayName,
-    phoneNumber: user.phoneNumber || '',
     email: user.email,
   };
 
-  const handleSubmit = async ({ fullName, phoneNumber, email }) => {
+  const handleSubmit = async ({ fullName, email }) => {
     await updateEmail(user, email)
       .then(() => console.log('Email updated'))
       .catch(error => console.log(error));
