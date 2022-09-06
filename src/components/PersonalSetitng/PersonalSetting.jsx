@@ -136,14 +136,6 @@ export const PersonalSetting = () => {
                   placeholder={intl.formatMessage({ id: 'FullName' })}
                 />
                 <Title>
-                  <FormattedMessage id="phoneNumber" />
-                </Title>
-                <Input
-                  type="text"
-                  name="phoneNumber"
-                  placeholder={intl.formatMessage({ id: 'phoneNumber' })}
-                />
-                <Title>
                   <FormattedMessage id="email" />
                 </Title>
                 <Input

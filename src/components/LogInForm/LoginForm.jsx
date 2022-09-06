@@ -21,8 +21,7 @@ import {
 import { IoEyeOutline, IoEyeOff } from 'react-icons/io5';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FormattedMessage, useIntl } from 'react-intl'
-
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const schema = yup.object().shape({
   email: yup.string().required(),
@@ -35,13 +34,13 @@ const values = {
 };
 
 export const LoginForm = () => {
-  const intl = useIntl()
+  const intl = useIntl();
   const [statePass, setStatePass] = useState(false);
   const toggleBtn = () => {
     setStatePass(prevState => !prevState);
   };
   const dispatch = useDispatch();
- 
+
   const handleSubmit = ({ email, password }, { resetForm }) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
@@ -55,7 +54,7 @@ export const LoginForm = () => {
           })
         );
         dispatch(setAuthToken(userAut.accessToken));
-        toast.success(<FormattedMessage id='welcome'/>);
+        toast.success(<FormattedMessage id="welcome" />);
         resetForm();
       })
       .catch(error => {
@@ -75,7 +74,7 @@ export const LoginForm = () => {
         <ContainerForm>
           <TitleDiv>
             <Title>
-            <FormattedMessage id='login' />
+              <FormattedMessage id="login" />
             </Title>
           </TitleDiv>
           <Container>
@@ -83,19 +82,23 @@ export const LoginForm = () => {
               <FormStyled autoComplete="off">
                 <label htmlFor="email">
                   <DescriptionTitle>
-                  <FormattedMessage id='email' />
+                    <FormattedMessage id="email" />
                   </DescriptionTitle>
-                  <Input type="email" name="email" placeholder={intl.formatMessage({id: "email"})} />
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder={intl.formatMessage({ id: 'email' })}
+                  />
                 </label>
                 <label htmlFor="password">
                   <DescriptionTitle>
-                  <FormattedMessage id='Password' />
+                    <FormattedMessage id="Password" />
                   </DescriptionTitle>
                   <Wrapper>
                     <Input
                       type={statePass ? 'text' : 'password'}
                       name="password"
-                      placeholder={intl.formatMessage({id: "Password"})} 
+                      placeholder={intl.formatMessage({ id: 'Password' })}
                     />
                     <BtnEye type="button" onClick={toggleBtn}>
                       {statePass ? <IoEyeOff /> : <IoEyeOutline />}
@@ -103,7 +106,7 @@ export const LoginForm = () => {
                   </Wrapper>
                 </label>
                 <Button type="submit">
-                <FormattedMessage id='Contine' />
+                  <FormattedMessage id="Continue" />
                 </Button>
               </FormStyled>
             </ContainerForm>
@@ -111,9 +114,9 @@ export const LoginForm = () => {
         </ContainerForm>
         <Register>
           <p>
-          <FormattedMessage id='NoAccount' />
+            <FormattedMessage id="NoAccount" />
             <LinkRegister to="/register">
-            <FormattedMessage id='RegisterNow' />
+              <FormattedMessage id="RegisterNow" />
             </LinkRegister>
           </p>
         </Register>

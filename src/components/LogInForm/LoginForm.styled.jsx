@@ -28,8 +28,8 @@ export const Input = styled(Field)`
   width: 377px;
   height: 58px;
   color: black;
+  padding-left: 5px;
   background-color: #f9fafb;
-
   margin-bottom: 30px;
   border: 1px solid #dedee0;
   border-radius: 5px;
@@ -41,6 +41,7 @@ export const Title = styled.h2`
 export const DescriptionTitle = styled.h2`
   font-size: 12px;
   font-weight: 400;
+  margin-bottom: 10px;
   text-transform: uppercase;
 `;
 export const Button = styled.button`
