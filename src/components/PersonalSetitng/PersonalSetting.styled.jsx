@@ -44,7 +44,6 @@ export const WrapperForm = styled.div`
   }
 `;
 
-
 export const ContentDiv = styled.div`
   width: 90%;
 `;
@@ -55,20 +54,21 @@ export const Input = styled(Field)`
   border: 1px solid #dedee0;
   background-color: #f2f2f2;
   padding-left: 15px;
+  margin-bottom: 40px;
   font-size: 16px;
 `;
 export const Title = styled.p`
   font-size: 15px;
   line-height: 14px;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `;
 export const H1 = styled.h1`
   font-family: 'Helvetica';
   font-size: 20px;
   line-height: 25px;
   color: #282828;
-  margin-top: 10px;
+  margin-top: 20px;
 `;
 
 export const BtnForm = styled.button`
@@ -78,7 +78,7 @@ export const BtnForm = styled.button`
   width: 100%;
   height: 58px;
   font-size: 15px;
-  margin-top: 25px;
+
   margin-bottom: 20px;
   cursor: pointer;
   color: #ffffff;
@@ -88,9 +88,9 @@ export const BtnForm = styled.button`
 `;
 
 export const Label = styled.label`
- background-color: #22a69b;
- padding: 10px 20px;
- font-size: 14px;
+  background-color: #22a69b;
+  padding: 10px 20px;
+  font-size: 14px;
   color: rgb(255 255 255);
   border-radius: 4px;
   border: none;
@@ -99,7 +99,7 @@ export const Label = styled.label`
   }
   :hover {
     background-color: #59be6e;
-  } 
+  }
 `;
 
 export const ChooseBtn = styled.input`
@@ -109,19 +109,19 @@ export const ChooseBtn = styled.input`
   display: block;
   width: 0;
   height: 0;
+
   :focus {
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   }
 `;
 export const BtnReset = styled.button`
-  
   cursor: pointer;
   text-decoration: none;
   font-size: 14px;
   color: rgb(255 255 255);
   border-radius: 4px;
   background-color: #22a69b;
-  padding: 10px 40px;
+  padding: 12px 40px;
   box-sizing: border-box;
   border: none;
   transition: background-color 0.2s;
@@ -134,7 +134,7 @@ export const BtnReset = styled.button`
 `;
 
 export const IMG = styled.img`
-  width: 100%;
+  width: 90%;
   border-radius: 50%;
   height: 320px;
   margin-bottom: 15px;
@@ -142,12 +142,10 @@ export const IMG = styled.img`
     height: 250px;
     width: 260px;
   }
-
 `;
 export const ButtonDiv = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
-
 `;

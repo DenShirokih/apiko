@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Form, Field } from 'formik';
-import {ReactComponent as Logo} from 'icons/search_icon.svg'
-import {ReactComponent as Location} from 'icons/location.svg'
+import { ReactComponent as Logo } from 'icons/search_icon.svg';
+import { ReactComponent as Location } from 'icons/location.svg';
 
 export const BtnClearInput = styled.button`
   background-color: transparent;
@@ -22,10 +22,9 @@ export const InputWrapper = styled.div`
     flex-direction: column;
     height: 150px;
     max-width: 350px;
-  margin: 0 auto;
+    margin: 0 auto;
   }
-  
-`
+`;
 export const Forma = styled(Form)`
   padding-bottom: 14px;
 `;
@@ -35,7 +34,7 @@ export const Input = styled(Field)`
   flex-basis: 56%;
   font-size: 16px;
   padding-left: 45px;
-  border-radius: 5px;
+  border-radius: 4px;
   @media (max-width: 768px) {
     flex-basis: 30%;
     width: 100%;
@@ -49,7 +48,7 @@ export const Button = styled.button`
   color: #ffffff;
   text-transform: uppercase;
   border: none;
-  border-radius: 10px;
+  border-radius: 4px;
   @media (max-width: 768px) {
     width: 100%;
     flex-basis: 30%;
@@ -57,15 +56,15 @@ export const Button = styled.button`
 `;
 
 export const SearchLogo = styled(Logo)`
-position: absolute;
-top: 15px;
-left: 15px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
   width: 20px;
   height: 20px;
   @media (max-width: 768px) {
     top: 13px;
   }
-`
+`;
 export const LocationLoge = styled(Location)`
   width: 25px;
   height: 25px;
@@ -77,10 +76,10 @@ export const LocationLoge = styled(Location)`
     top: 6px;
     left: 15px;
   }
-`
+`;
 export const SvgContainer = styled.div`
   position: relative;
   @media (max-width: 768px) {
     width: 100%;
   }
-`
+`;

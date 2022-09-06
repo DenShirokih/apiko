@@ -31,6 +31,7 @@ export const Input = styled(Field)`
   background-color: #f9fafb;
   color: black;
   margin-bottom: 24px;
+  padding-left: 5px;
   border: 1px solid #dedee0;
   border-radius: 5px;
 `;
